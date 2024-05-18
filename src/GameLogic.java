@@ -3,8 +3,8 @@ public class GameLogic {
     private boolean isGameOver;
 
     public void initializeGame() {
-        attemptCount = 0;
-        isGameOver = false;
+        this.attemptCount = 0;
+        this.isGameOver = false;
     }
 
     public boolean isGameOver() {
