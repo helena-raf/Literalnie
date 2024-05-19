@@ -1,5 +1,5 @@
 public class Word {
-    private char[] letters;
+    protected char[] charLetters;
 
     public Word(String word) {
         if (word.length() != 5){
@@ -7,19 +7,24 @@ public class Word {
         }
 
         char[] charArr = word.toCharArray();
-        letters = charArr;
+        this.charLetters = charArr;
     }
 
     public char getCharFromPos(int pos) {
-        return letters[pos];
+        return charLetters[pos];
     }
 
     public boolean containsLetter(char letter) {
-        for ( char l : this.letters ) {
+        for ( char l : this.charLetters ) {
             if (letter == l) {
                 return true;
             }
         }
         return false;
+    }
+
+    public boolean isLetterAtPosition (char letter, int pos) {
+        char letterAtPos = this.charLetters[pos];
+        return (letterAtPos == letter);
     }
 }
