@@ -6,4 +6,12 @@ public class Letter {
         this.letter = letter;
         this.color = color;
     }
+
+    public char getChar() {
+        return this.letter;
+    }
+
+    public void color(Color color) {
+        this.color = color;
+    }
 }
