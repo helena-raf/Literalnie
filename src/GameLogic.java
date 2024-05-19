@@ -4,25 +4,24 @@ public class GameLogic {
     private int attemptCount;
     private boolean isGameOver;
     private WordDictionary dictionary;
-    private char[] correctWord;
-    private Word currentGuess;
+    private Word correctWord;
+    private ColoredWord currentGuess;
 
     public void initializeGame() {
         this.attemptCount = 0;
         this.isGameOver = false;
         // pozniej correctWord ma byc losowane!
-        char[] w = {'r', 'z', 'e', 'k', 'a'};
-        this.correctWord = w;
+        this.correctWord = new Word("rzeka");
         //////////////////////
     }
 
-    public void setCurrentGuess(Word guess) {
+    public void setCurrentGuess(ColoredWord guess) {
         this.currentGuess = guess;
     }
 
     public boolean isGuessCorrect() {
         for (int i = 0; i < 5; i++) {
-            if (correctWord[i] != currentGuess.getCharFromPos(i)) {
+            if (correctWord.getCharFromPos(i) != currentGuess.getCharFromPos(i)) {
                 return false;
             }
         }
@@ -32,7 +31,24 @@ public class GameLogic {
     public void evaluateGuess() {
         // sprawdzic czy slowo istnieje jesli nie -> handleInvGuessInput jesli tak 
         // sprawdzic czy slowo dobre jesli tak -> handleWin jesli nie
-        
+        // isAttemptsLimitReached jesli tak -> gameover jesli nie 
+        //  colorguess
+    }
+
+    public void colorGuess() {
+        for (int i = 0; i < 5; i++) {
+            char correctLetter = correctWord.getCharFromPos(i);
+            char guessLetter = currentGuess.getCharFromPos(i);
+
+            if (currentGuess.isLetterAtPosition(correctLetter, i)) {
+                currentGuess.colorLetterAtPos(i, Color.GREEN);
+            }
+            else {
+                if (correctWord.containsLetter(guessLetter)) {
+                    currentGuess.colorLetterAtPos(i, Color.YELLOW);
+                }
+            }
+        }
     }
 
     public boolean isAttemptsLimitReached() {
