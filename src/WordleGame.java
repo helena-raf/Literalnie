@@ -9,8 +9,8 @@ public class WordleGame {
         gameLogic.initializeGame();
 
         while (!gameLogic.isGameOver()) {
-            // gracz zgaduje slowo 
-            // ewaluacja slowa 
+            // gracz zgaduje slowo (ui)
+            // ewaluacja slowa (gamelogic - evaluateguess)
         }
         
         System.out.println("Game over!");

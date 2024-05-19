@@ -17,7 +17,7 @@ public class Word {
     }
 
     public boolean containsLetter (Letter letter) {
-        for (Letter l : this.letters ) {
+        for ( Letter l : this.letters ) {
             if (letter.getChar() == l.getChar()) {
                 return true;
             }
@@ -34,5 +34,7 @@ public class Word {
         this.letters[pos].color(color);
     }
 
-
+    public char getCharFromPos (int pos) {
+        return letters[pos].getChar();
+    }
 }
