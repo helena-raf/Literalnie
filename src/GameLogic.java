@@ -15,8 +15,8 @@ public class GameLogic {
         //////////////////////
     }
 
-    public void setCurrentGuess(ColoredWord guess) {
-        this.currentGuess = guess;
+    public void setCurrentGuess(String guess) {
+        this.currentGuess = new ColoredWord(guess);
     }
 
     public boolean isGuessCorrect() {
@@ -30,9 +30,17 @@ public class GameLogic {
 
     public void evaluateGuess() {
         // sprawdzic czy slowo istnieje jesli nie -> handleInvGuessInput jesli tak 
-        // sprawdzic czy slowo dobre jesli tak -> handleWin jesli nie
-        // isAttemptsLimitReached jesli tak -> gameover jesli nie 
-        //  colorguess
+        if (isGuessCorrect()) {
+            handleWin();
+            this.isGameOver = true;
+        }
+        else if (isAttemptsLimitReached()) {
+            handleLoss();
+            this.isGameOver = true;
+        }
+        else {
+            colorGuess();
+        }
     }
 
     public void colorGuess() {
@@ -56,6 +64,10 @@ public class GameLogic {
     }
 
     public void handleWin() {
+
+    }
+
+    public void handleLoss() {
 
     }
 
