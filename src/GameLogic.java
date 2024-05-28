@@ -1,4 +1,4 @@
-import java.util.Dictionary;
+
 
 public class GameLogic {
     private int attemptCount;
@@ -19,6 +19,10 @@ public class GameLogic {
         this.currentGuess = new ColoredWord(guess);
     }
 
+    public ColoredWord getCurrentGuess() {
+        return currentGuess;
+    }
+
     public boolean isGuessCorrect() {
         for (int i = 0; i < 5; i++) {
             if (correctWord.getCharFromPos(i) != currentGuess.getCharFromPos(i)) {
@@ -30,6 +34,8 @@ public class GameLogic {
 
     public void evaluateGuess() {
         // sprawdzic czy slowo istnieje jesli nie -> handleInvGuessInput jesli tak 
+        this.attemptCount += 1;
+        this.colorGuess();
         if (isGuessCorrect()) {
             handleWin();
             this.isGameOver = true;
@@ -37,9 +43,6 @@ public class GameLogic {
         else if (isAttemptsLimitReached()) {
             handleLoss();
             this.isGameOver = true;
-        }
-        else {
-            colorGuess();
         }
     }
 
@@ -59,8 +62,9 @@ public class GameLogic {
         }
     }
 
+
     public boolean isAttemptsLimitReached() {
-        return (attemptCount >= 5);
+        return (attemptCount >= 6);
     }
 
     public void handleWin() {

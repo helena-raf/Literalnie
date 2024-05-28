@@ -14,6 +14,7 @@ public class WordleGame {
         while (!gameLogic.isGameOver()) {
             gameLogic.setCurrentGuess(userInterface.getGuessFromUser());
             gameLogic.evaluateGuess();
+            userInterface.printColoredGuess(gameLogic.getCurrentGuess());
         }
 
         

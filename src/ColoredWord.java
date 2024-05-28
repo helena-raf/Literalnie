@@ -17,4 +17,7 @@ public class ColoredWord extends Word {
         this.letters[pos].color(color);
     }
 
+    public Letter getLetterFromPos (int pos) {
+        return letters[pos];
+    }
 }

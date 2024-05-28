@@ -11,6 +11,10 @@ public class Letter {
         return this.letter;
     }
 
+    public Color getColor() {
+        return this.color;
+    }
+
     public void color(Color color) {
         this.color = color;
     }
