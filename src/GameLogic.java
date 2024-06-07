@@ -3,9 +3,9 @@
 public class GameLogic {
     private int attemptCount;
     private boolean isGameOver;
-    private WordDictionary dictionary;
     private Word correctWord;
     private ColoredWord currentGuess;
+
 
     public void initializeGame() {
         this.attemptCount = 0;
@@ -32,16 +32,14 @@ public class GameLogic {
         return true;
     }
 
-    public void evaluateGuess() {
-        // sprawdzic czy slowo istnieje jesli nie -> handleInvGuessInput jesli tak 
+    public void evaluateGuess(String guess) {
+        setCurrentGuess(guess);
         this.attemptCount += 1;
         this.colorGuess();
         if (isGuessCorrect()) {
-            handleWin();
             this.isGameOver = true;
         }
         else if (isAttemptsLimitReached()) {
-            handleLoss();
             this.isGameOver = true;
         }
     }
@@ -65,14 +63,6 @@ public class GameLogic {
 
     public boolean isAttemptsLimitReached() {
         return (attemptCount >= 6);
-    }
-
-    public void handleWin() {
-
-    }
-
-    public void handleLoss() {
-
     }
 
     public boolean isGameOver() {

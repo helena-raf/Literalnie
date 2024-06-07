@@ -1,8 +1,11 @@
 public class WordleGame {
     private GameLogic gameLogic;
     private UserInterface userInterface;
+    private WordDictionary dictionary;
+
 
     public WordleGame() {
+        this.dictionary = new WordDictionary("Literalnie/resources/polish_words.txt");
         this.gameLogic = new GameLogic();
         this.userInterface = new UserInterface();
     }
@@ -12,9 +15,12 @@ public class WordleGame {
        
 
         while (!gameLogic.isGameOver()) {
-            gameLogic.setCurrentGuess(userInterface.getGuessFromUser());
-            gameLogic.evaluateGuess();
-            userInterface.printColoredGuess(gameLogic.getCurrentGuess());
+            String input = userInterface.getGuessFromUser();
+            if (dictionary.containsWord(input)){
+                gameLogic.evaluateGuess(input);
+                userInterface.printColoredGuess(gameLogic.getCurrentGuess());
+            }
+            else {System.out.println("word doesnt exist!!");}
         }
 
         
@@ -23,8 +29,5 @@ public class WordleGame {
     }
 
         
-    public static void main(String[] args) {
-        WordleGame game = new WordleGame();
-        game.initializeNewGame();
-    }
+    
 }

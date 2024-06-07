@@ -27,4 +27,6 @@ public class Word {
         char letterAtPos = this.charLetters[pos];
         return (letterAtPos == letter);
     }
+
+
 }

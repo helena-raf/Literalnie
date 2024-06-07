@@ -1,9 +1,13 @@
+import java.util.Set;
+
 public class WordDictionary {
-    private String[] wordList;
+    private Set<String> wordSet;
 
-    public WordDictionary() {
-        
+    public WordDictionary (String filePath) {
+        this.wordSet = WordReader.loadWordsFromFile(filePath);
     }
-
-    // wymyslic jaka struktura danych do szybkiego przeszukiwania slow
+ 
+    public boolean containsWord (String word) {
+        return wordSet.contains(word);
+    }
 }
