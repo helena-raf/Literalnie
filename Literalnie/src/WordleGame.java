@@ -12,7 +12,6 @@ public class WordleGame {
 
     public void initializeNewGame() {
         gameLogic.initializeGame();
-       
 
         while (!gameLogic.isGameOver()) {
             String input = userInterface.getGuessFromUser();
