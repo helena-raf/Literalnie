@@ -12,4 +12,8 @@ public class GridCell extends JLabel {
         this.setText(letter);
     }
 
+    public void deleteLetter() {
+        this.setText("");
+    }
+
 }

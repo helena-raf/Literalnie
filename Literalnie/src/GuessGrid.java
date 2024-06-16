@@ -3,6 +3,7 @@ import java.awt.*;
 
 public class GuessGrid extends JPanel{
     private GridCell[][] grid;
+    // current col i row wskazuja kolejne puste miejsce w kratce
     private int currentRow;
     private int currentCol;
     
@@ -20,14 +21,38 @@ public class GuessGrid extends JPanel{
         }
     }
 
+    public void deleteLetter() {
+        prevCell();
+        this.grid[currentRow][currentCol].deleteLetter();
+    }
+
     public void insertLetter(String letter){
-        this.grid[currentRow][currentCol].setLetter(letter);
+        // musimy sprawdzic czy nie jestesmy w komorce poza kratka == czy kratka nie jest pelna
+        if (currentRow != 6) {
+            this.grid[currentRow][currentCol].setLetter(letter);
+            nextCell();
+        }
+    }
+
+    private void nextCell() {
         if (currentCol == 4) {
+            if (currentRow == 6) {return;} // pozwala wyjsc tylko jedno pole poza kratke (jak juz reszta wypelniona)
             this.currentCol = 0;
             this.currentRow += 1;
         }
         else {
             this.currentCol += 1;
+        }
+    }
+
+    private void prevCell() {
+        if (currentCol == 0) {
+            if (currentRow == 0) {return;}
+            this.currentCol = 4;
+            this.currentRow -= 1;
+        }
+        else {
+            currentCol -= 1;
         }
     }
 }

@@ -29,25 +29,20 @@ public class Frame extends JFrame implements KeyListener{
         mainPanel.add(guessGrid);
     }
 
-    public void addLetterToGrid(String letter) {
-        this.guessGrid.insertLetter(letter);
-    }
-
     @Override
     public void keyPressed(KeyEvent e) {
         char keyChar = e.getKeyChar();
-        addLetterToGrid(Character.toString(keyChar));
+        if (Character.isLetter(keyChar)) {
+            this.guessGrid.insertLetter(Character.toString(keyChar));
+        }
+        if (keyChar == '\b'){
+            this.guessGrid.deleteLetter();
+        }
     }
     
     @Override
-    public void keyReleased(KeyEvent e) {
-        // Obsługa zdarzenia zwolnienia klawisza
-        System.out.println("Key Released: " + e.getKeyChar());
-    }
+    public void keyReleased(KeyEvent e) {}
 
     @Override
-    public void keyTyped(KeyEvent e) {
-        // Obsługa zdarzenia wpisania klawisza
-        System.out.println("Key Typed: " + e.getKeyChar());
-    }
+    public void keyTyped(KeyEvent e) {}
 }
