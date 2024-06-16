@@ -22,7 +22,12 @@ public class GuessGrid extends JPanel{
 
     public void insertLetter(String letter){
         this.grid[currentRow][currentCol].setLetter(letter);
-        this.currentRow += 1;
-        this.currentCol += 1;
+        if (currentCol == 4) {
+            this.currentCol = 0;
+            this.currentRow += 1;
+        }
+        else {
+            this.currentCol += 1;
+        }
     }
 }

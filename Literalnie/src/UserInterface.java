@@ -1,37 +1,16 @@
-import java.awt.Dimension;
 import java.util.Scanner;
-
 import javax.swing.*;
 
 
 public class UserInterface {
-    private JFrame frame;
-    private JPanel mainPanel;
-    private JPanel guessGrid;
+    private Frame frame;
+    
 
     public UserInterface() {
-        this.frame = new JFrame();
-        this.mainPanel = new JPanel();
-        this.guessGrid = new GuessGrid();
-
-        setUpMainPanel();
-        setUpFrame();
-
-        frame.setVisible(true);
+        this.frame = new Frame();
     }
 
-    private void setUpMainPanel() {
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
-        mainPanel.add(guessGrid);
-    }
-
-    private void setUpFrame() { 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(300, 400));;
-        frame.add(mainPanel);
-        frame.pack();
-        frame.setLocationRelativeTo(null);       
-    }
+    
 
     ////////////////////////////////////////////////
 
