@@ -33,10 +33,14 @@ public class Frame extends JFrame implements KeyListener{
     public void keyPressed(KeyEvent e) {
         char keyChar = e.getKeyChar();
         if (Character.isLetter(keyChar)) {
-            this.guessGrid.insertLetter(Character.toString(keyChar));
+            guessGrid.insertLetter(keyChar);
         }
-        if (keyChar == '\b'){
-            this.guessGrid.deleteLetter();
+        if (keyChar == '\b') {
+            guessGrid.deleteLetter();
+        }
+        if (keyChar == '\n') {
+            String word = guessGrid.getWord();
+            System.out.println(word);
         }
     }
     

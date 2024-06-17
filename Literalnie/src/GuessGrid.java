@@ -26,12 +26,29 @@ public class GuessGrid extends JPanel{
         this.grid[currentRow][currentCol].deleteLetter();
     }
 
-    public void insertLetter(String letter){
+    public void insertLetter(char letter){
         // musimy sprawdzic czy nie jestesmy w komorce poza kratka == czy kratka nie jest pelna
         if (currentRow != 6) {
             this.grid[currentRow][currentCol].setLetter(letter);
             nextCell();
         }
+    }
+
+    public String getWord() {
+        char[] chars = new char[5];
+        prevCell();
+        int row = this.currentRow;
+        int lastLetterColumn = this.currentCol;
+
+        for (int col = 0; col <= lastLetterColumn; col++) {
+            GridCell cell = grid[row][col];
+            if (!cell.isEmpty()) {
+                chars[col] = cell.getLetter();
+            }
+        }
+        String word = new String(chars);
+        nextCell();
+        return word;
     }
 
     private void nextCell() {
@@ -55,4 +72,5 @@ public class GuessGrid extends JPanel{
             currentCol -= 1;
         }
     }
+
 }

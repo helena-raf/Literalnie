@@ -2,18 +2,32 @@ import javax.swing.JLabel;
 import java.awt.Color;
 
 public class GridCell extends JLabel {
+    private char letter;
+    private boolean empty;
 
     public GridCell() {
+        this.empty = true;
         this.setOpaque(true);
         this.setBackground(Color.GREEN);
     }
 
-    public void setLetter(String letter) {
-        this.setText(letter);
+    public void setLetter(char letter) {
+        this.letter = letter;
+        this.empty = false;
+        this.setText(Character.toString(letter));
     }
 
     public void deleteLetter() {
         this.setText("");
+        this.empty = true;
+    }
+
+    public char getLetter() {
+        return letter;
+    }
+
+    public boolean isEmpty() {
+        return empty;
     }
 
 }
