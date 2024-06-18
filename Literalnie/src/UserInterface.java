@@ -4,21 +4,35 @@ import javax.swing.*;
 
 public class UserInterface {
     private Frame frame;
-    
+    private String lastGuess;
 
     public UserInterface() {
-        this.frame = new Frame();
+        this.frame = new Frame(this);
     }
 
+    public synchronized void userPressedEnter(String typedWord) {
+        if (typedWord.length() < 5) {
+            notifyWordTooShort();
+        }
+        else {
+            this.lastGuess = typedWord;
+            this.frame.nextRow();
+            notify();
+        }
+    }
+
+    public void notifyWordTooShort() {}
     
 
     ////////////////////////////////////////////////
 
-    public String getGuessFromUser() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("\npodaj zgadywane slowo: ");
-        String guess = scanner.nextLine();
-        return guess;
+    public synchronized String getGuessFromUser() {
+        try {
+            wait();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return lastGuess;
     }
 
    public void printColoredGuess(ColoredWord coloredGuess) {

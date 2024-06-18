@@ -8,10 +8,12 @@ import javax.swing.JPanel;
 public class Frame extends JFrame implements KeyListener{
     private JPanel mainPanel;
     private GuessGrid guessGrid;
+    private UserInterface ui;
 
-    public Frame() {
+    public Frame(UserInterface ui) {
         this.mainPanel = new JPanel();
         this.guessGrid = new GuessGrid();
+        this.ui = ui;
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setPreferredSize(new Dimension(300, 400));;
@@ -40,7 +42,7 @@ public class Frame extends JFrame implements KeyListener{
         }
         if (keyChar == '\n') {
             String word = guessGrid.getWord();
-            System.out.println(word);
+            this.ui.userPressedEnter(word);
         }
     }
     
@@ -49,4 +51,8 @@ public class Frame extends JFrame implements KeyListener{
 
     @Override
     public void keyTyped(KeyEvent e) {}
+
+    public void nextRow() {
+        this.guessGrid.nextRow();
+    }
 }

@@ -27,8 +27,8 @@ public class GuessGrid extends JPanel{
     }
 
     public void insertLetter(char letter){
-        // musimy sprawdzic czy nie jestesmy w komorce poza kratka == czy kratka nie jest pelna
-        if (currentRow != 6) {
+        // musimy sprawdzic czy nie jestesmy w komorce poza kratka == czy wiersz nie jest pelny
+        if (currentCol <= 4) {
             this.grid[currentRow][currentCol].setLetter(letter);
             nextCell();
         }
@@ -52,25 +52,21 @@ public class GuessGrid extends JPanel{
     }
 
     private void nextCell() {
-        if (currentCol == 4) {
-            if (currentRow == 6) {return;} // pozwala wyjsc tylko jedno pole poza kratke (jak juz reszta wypelniona)
-            this.currentCol = 0;
-            this.currentRow += 1;
-        }
-        else {
+    // pozwala wyjsc tylko jedno pole w prawo poza kratke
+        if (currentCol <= 4) {
             this.currentCol += 1;
         }
     }
 
     private void prevCell() {
-        if (currentCol == 0) {
-            if (currentRow == 0) {return;}
-            this.currentCol = 4;
-            this.currentRow -= 1;
+        if (currentCol != 0) {
+            this.currentCol -= 1;
         }
-        else {
-            currentCol -= 1;
-        }
+    }
+
+    public void nextRow() {
+        this.currentCol = 0;
+        this.currentRow += 1;
     }
 
 }
