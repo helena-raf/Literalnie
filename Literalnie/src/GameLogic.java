@@ -1,4 +1,5 @@
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameLogic {
     private int attemptCount;
@@ -45,17 +46,25 @@ public class GameLogic {
     }
 
     public void colorGuess() {
+        List<Character> correctLetters = new ArrayList<>();
+        // lista lettersToCompare zawiera literki ktore bedziemy usuwac po porownaniu ich
+        
         for (int i = 0; i < 5; i++) {
             char correctLetter = correctWord.getCharFromPos(i);
-            char guessLetter = currentGuess.getCharFromPos(i);
+            correctLetters.add(correctLetter);
 
             if (currentGuess.isLetterAtPosition(correctLetter, i)) {
                 currentGuess.colorLetterAtPos(i, MyColor.GREEN);
+                correctLetters.remove((Character) correctLetter);
             }
-            else {
-                if (correctWord.containsLetter(guessLetter)) {
-                    currentGuess.colorLetterAtPos(i, MyColor.YELLOW);
-                }
+        }
+
+        for (int i = 0; i < 5; i++) {
+            char guessLetter = currentGuess.getCharFromPos(i);
+
+            if (correctLetters.contains(guessLetter)) {
+                currentGuess.colorLetterAtPos(i, MyColor.YELLOW);
+                correctLetters.remove((Character) guessLetter);
             }
         }
     }
