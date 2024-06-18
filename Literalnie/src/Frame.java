@@ -34,6 +34,7 @@ public class Frame extends JFrame {
     }
 
     private void setUpMainPanel() {
+        mainPanel.setBackground(new Color(255, 100, 50));
         mainPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
@@ -41,23 +42,10 @@ public class Frame extends JFrame {
         gbc.gridwidth = 1;
         gbc.gridheight = 1;
         gbc.weightx = 1.0;
-        gbc.weighty = 3.0; 
+        gbc.weighty = 1.0; 
         gbc.fill = GridBagConstraints.BOTH;
 
         mainPanel.add(guessGrid, gbc);
-
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.gridwidth = 1;
-        gbc.gridheight = 1;
-        gbc.weightx = 1.0;
-        gbc.weighty = 4.0; 
-        gbc.fill = GridBagConstraints.BOTH;
-
-        JLabel alfabet = new JLabel();
-        alfabet.setOpaque(true);
-        alfabet.setBackground(Color.GREEN);
-        mainPanel.add(alfabet, gbc);
 
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
     }
@@ -74,6 +62,36 @@ public class Frame extends JFrame {
             String word = guessGrid.getWord();
             this.ui.userPressedEnter(word);
         }
+    }
+
+    public void showWinMessage() {
+        JPanel messagePanel = new JPanel();
+        messagePanel.setLayout(new GridBagLayout());
+        messagePanel.setBackground(Color.YELLOW); // Kolor tła dla komunikatu
+
+        // Tworzymy etykietę z komunikatem
+        JLabel label = new JLabel("Wygrana!");
+        label.setFont(new Font("Arial", Font.BOLD, 24)); // Ustawiamy czcionkę i rozmiar
+        label.setForeground(Color.RED); // Ustawiamy kolor tekstu
+
+        // Dodajemy etykietę do panelu
+        messagePanel.add(label);
+
+        // Ustawiamy GridBagConstraints dla panelu z komunikatem
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.fill = GridBagConstraints.CENTER;
+
+        // Usuwamy wszystkie komponenty z mainPanel (jeśli są) i dodajemy messagePanel
+        mainPanel.removeAll();
+        mainPanel.add(messagePanel, gbc);
+
+        // Odświeżamy panel główny
+        mainPanel.revalidate();
+        mainPanel.repaint();
     }
 
     

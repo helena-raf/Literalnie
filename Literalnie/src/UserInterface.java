@@ -41,15 +41,13 @@ public class UserInterface {
             MyColor color = coloredGuess.getColorFromPos(i);
             this.frame.guessGrid.colorCellInCurrentRow(i, color);
         }
-       
-   }
+    }
+    public void handleWin() {
+        frame.showWinMessage();
+    }
 
-   public void handleWin() {
-    System.out.println("wygrana");
-   }
-
-   public void handleLoss() {
-    System.out.println("przegranarko");
-   }
+    public void handleLoss() {
+        System.out.println("przegranarko");
+    }
    
 }

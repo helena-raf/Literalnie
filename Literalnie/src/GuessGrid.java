@@ -8,6 +8,7 @@ public class GuessGrid extends JPanel{
     private int currentCol;
     
     public GuessGrid(){
+        this.setBackground(new Color(255, 100, 50));
         this.grid = new GridCell[6][5];
         this.currentRow = 0;
         this.currentCol = 0;
