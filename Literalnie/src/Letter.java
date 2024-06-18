@@ -1,8 +1,8 @@
 public class Letter {
     private char letter;
-    private Color color;
+    private MyColor color;
 
-    public Letter(char letter, Color color) {
+    public Letter(char letter, MyColor color) {
         this.letter = letter;
         this.color = color;
     }
@@ -11,11 +11,11 @@ public class Letter {
         return this.letter;
     }
 
-    public Color getColor() {
+    public MyColor getColor() {
         return this.color;
     }
 
-    public void color(Color color) {
+    public void color(MyColor color) {
         this.color = color;
     }
 }

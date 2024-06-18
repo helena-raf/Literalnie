@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 public class Frame extends JFrame implements KeyListener{
     private JPanel mainPanel;
-    private GuessGrid guessGrid;
+    public GuessGrid guessGrid;
     private UserInterface ui;
 
     public Frame(UserInterface ui) {
@@ -52,7 +52,5 @@ public class Frame extends JFrame implements KeyListener{
     @Override
     public void keyTyped(KeyEvent e) {}
 
-    public void nextRow() {
-        this.guessGrid.nextRow();
-    }
+    
 }

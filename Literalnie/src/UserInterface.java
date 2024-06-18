@@ -1,7 +1,3 @@
-import java.util.Scanner;
-import javax.swing.*;
-
-
 public class UserInterface {
     private Frame frame;
     private String lastGuess;
@@ -34,26 +30,16 @@ public class UserInterface {
         }
         return lastGuess;
     }
-    
+
     public void nextRow() {
-        this.frame.nextRow();
+        this.frame.guessGrid.nextRow();
     }
+
 
    public void printColoredGuess(ColoredWord coloredGuess) {
         for (int i = 0; i < 5; i++) {
-            Letter letter = coloredGuess.getLetterFromPos(i);
-            Color color = letter.getColor();
-            String colorStr;
-            if (color == Color.GREEN) {
-                colorStr = "GREEN_";
-            }
-            else if (color == Color.YELLOW) {
-                colorStr = "YELLOW_";
-            }
-            else {
-                colorStr = "GREY_";
-            }
-            System.out.print(colorStr+ letter.getChar()+ "  ");
+            MyColor color = coloredGuess.getColorFromPos(i);
+            this.frame.guessGrid.colorCellInCurrentRow(i, color);
         }
        
    }

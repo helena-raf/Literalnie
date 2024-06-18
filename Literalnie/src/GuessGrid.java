@@ -68,4 +68,8 @@ public class GuessGrid extends JPanel{
         this.currentRow += 1;
     }
 
+    public void colorCellInCurrentRow(int column, MyColor color) {
+        this.grid[currentRow][column].setColor(color);
+    }
+
 }

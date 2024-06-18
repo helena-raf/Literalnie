@@ -50,11 +50,11 @@ public class GameLogic {
             char guessLetter = currentGuess.getCharFromPos(i);
 
             if (currentGuess.isLetterAtPosition(correctLetter, i)) {
-                currentGuess.colorLetterAtPos(i, Color.GREEN);
+                currentGuess.colorLetterAtPos(i, MyColor.GREEN);
             }
             else {
                 if (correctWord.containsLetter(guessLetter)) {
-                    currentGuess.colorLetterAtPos(i, Color.YELLOW);
+                    currentGuess.colorLetterAtPos(i, MyColor.YELLOW);
                 }
             }
         }

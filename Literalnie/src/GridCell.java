@@ -8,7 +8,7 @@ public class GridCell extends JLabel {
     public GridCell() {
         this.empty = true;
         this.setOpaque(true);
-        this.setBackground(Color.GREEN);
+        this.setBackground(Color.WHITE);
     }
 
     public void setLetter(char letter) {
@@ -28,6 +28,18 @@ public class GridCell extends JLabel {
 
     public boolean isEmpty() {
         return empty;
+    }
+
+    public void setColor(MyColor color) {
+        if (color == MyColor.GREEN) {
+            this.setBackground(Color.GREEN);
+        }
+        else if (color == MyColor.YELLOW) {
+            this.setBackground(Color.YELLOW);
+        }
+        else {
+            this.setBackground(Color.GRAY);
+        }
     }
 
 }
