@@ -1,3 +1,4 @@
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import java.awt.*;
 
@@ -9,6 +10,7 @@ public class GuessGrid extends JPanel{
     
     public GuessGrid(){
         this.setBackground(new Color(255, 100, 50));
+        this.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         this.grid = new GridCell[6][5];
         this.currentRow = 0;
         this.currentCol = 0;

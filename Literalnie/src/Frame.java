@@ -17,8 +17,7 @@ public class Frame extends JFrame {
         this.guessGrid = new GuessGrid();
         this.ui = ui;
 
-        setUpMainPanel();
-        this.add(mainPanel);
+        this.add(guessGrid);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setPreferredSize(new Dimension(300, 400));
@@ -33,22 +32,6 @@ public class Frame extends JFrame {
         });
     }
 
-    private void setUpMainPanel() {
-        mainPanel.setBackground(new Color(255, 100, 50));
-        mainPanel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.gridwidth = 1;
-        gbc.gridheight = 1;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0; 
-        gbc.fill = GridBagConstraints.BOTH;
-
-        mainPanel.add(guessGrid, gbc);
-
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-    }
 
     public void handleKeyPressed(KeyEvent e) {
         char keyChar = e.getKeyChar();
