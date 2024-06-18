@@ -6,11 +6,13 @@ public class GameLogic {
     private boolean isGameOver;
     private Word correctWord;
     private ColoredWord currentGuess;
+    private boolean hasPlayerWon;
 
 
     public void initializeGame() {
         this.attemptCount = 0;
         this.isGameOver = false;
+        this.hasPlayerWon = false;
         // pozniej correctWord ma byc losowane!
         this.correctWord = new Word("rzeka");
         //////////////////////
@@ -38,6 +40,7 @@ public class GameLogic {
         this.attemptCount += 1;
         this.colorGuess();
         if (isGuessCorrect()) {
+            this.hasPlayerWon = true;
             this.isGameOver = true;
         }
         else if (isAttemptsLimitReached()) {
@@ -76,5 +79,9 @@ public class GameLogic {
 
     public boolean isGameOver() {
         return isGameOver;
+    }
+
+    public boolean hasPlayerWon() {
+        return hasPlayerWon;
     }
 }

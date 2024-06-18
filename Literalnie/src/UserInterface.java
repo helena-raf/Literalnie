@@ -43,5 +43,13 @@ public class UserInterface {
         }
        
    }
+
+   public void handleWin() {
+    System.out.println("wygrana");
+   }
+
+   public void handleLoss() {
+    System.out.println("przegranarko");
+   }
    
 }

@@ -25,8 +25,13 @@ public class WordleGame {
             }
         }
 
+        if (gameLogic.hasPlayerWon()) {
+            userInterface.handleWin();
+        }
+        else {
+            userInterface.handleLoss();
+        }
         
-        System.out.println("Game over!");
         // czekamy na input czy chce grac ponownie jesli tak to this.initializeNewGame
     }
 
