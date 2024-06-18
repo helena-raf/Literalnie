@@ -18,8 +18,11 @@ public class WordleGame {
             if (dictionary.containsWord(input)){
                 gameLogic.evaluateGuess(input);
                 userInterface.printColoredGuess(gameLogic.getCurrentGuess());
+                userInterface.nextRow();
             }
-            else {System.out.println("word doesnt exist!!");}
+            else {
+                System.out.println("word doesnt exist!!");
+            }
         }
 
         

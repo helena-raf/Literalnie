@@ -36,9 +36,9 @@ public class GuessGrid extends JPanel{
 
     public String getWord() {
         char[] chars = new char[5];
-        prevCell();
         int row = this.currentRow;
-        int lastLetterColumn = this.currentCol;
+        if (currentCol == 0) {return "";}
+        int lastLetterColumn = currentCol - 1;
 
         for (int col = 0; col <= lastLetterColumn; col++) {
             GridCell cell = grid[row][col];
@@ -46,8 +46,7 @@ public class GuessGrid extends JPanel{
                 chars[col] = cell.getLetter();
             }
         }
-        String word = new String(chars);
-        nextCell();
+        String word = new String(chars, 0, lastLetterColumn+1);
         return word;
     }
 

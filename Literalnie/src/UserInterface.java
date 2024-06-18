@@ -16,13 +16,13 @@ public class UserInterface {
         }
         else {
             this.lastGuess = typedWord;
-            this.frame.nextRow();
             notify();
         }
     }
 
-    public void notifyWordTooShort() {}
-    
+    public void notifyWordTooShort() {
+        System.out.println("za krotkie");
+    }
 
     ////////////////////////////////////////////////
 
@@ -33,6 +33,10 @@ public class UserInterface {
             e.printStackTrace();
         }
         return lastGuess;
+    }
+    
+    public void nextRow() {
+        this.frame.nextRow();
     }
 
    public void printColoredGuess(ColoredWord coloredGuess) {
@@ -51,6 +55,7 @@ public class UserInterface {
             }
             System.out.print(colorStr+ letter.getChar()+ "  ");
         }
+       
    }
-
+   
 }
