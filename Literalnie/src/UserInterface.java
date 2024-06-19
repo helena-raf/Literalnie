@@ -1,9 +1,11 @@
 public class UserInterface {
     private Frame frame;
     private String lastGuess;
+    private WordleGame game;
 
-    public UserInterface() {
+    public UserInterface(WordleGame game) {
         this.frame = new Frame(this);
+        this.game = game;
     }
 
     public synchronized void userPressedEnter(String typedWord) {
@@ -49,5 +51,11 @@ public class UserInterface {
     public void handleLoss() {
         System.out.println("przegranarko");
     }
+
+    public void playAgain() {
+        game.initializeNewGame();
+    }
+
+
    
 }

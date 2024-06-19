@@ -3,17 +3,16 @@ import java.awt.*;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Frame extends JFrame {
-    private JPanel mainPanel;
     public GuessGrid guessGrid;
     private UserInterface ui;
 
     public Frame(UserInterface ui) {
-        this.mainPanel = new JPanel();
         this.guessGrid = new GuessGrid();
         this.ui = ui;
 
@@ -48,33 +47,33 @@ public class Frame extends JFrame {
     }
 
     public void showWinMessage() {
-        JPanel messagePanel = new JPanel();
-        messagePanel.setLayout(new GridBagLayout());
-        messagePanel.setBackground(Color.YELLOW); // Kolor tła dla komunikatu
+        JPanel winPanel = new JPanel();
+        winPanel.setLayout(new GridBagLayout());
+        winPanel.setBackground(Color.WHITE); 
 
-        // Tworzymy etykietę z komunikatem
-        JLabel label = new JLabel("Wygrana!");
-        label.setFont(new Font("Arial", Font.BOLD, 24)); // Ustawiamy czcionkę i rozmiar
-        label.setForeground(Color.RED); // Ustawiamy kolor tekstu
+        JLabel text = new JLabel("Wygrana!");
+        
+        JButton playAgainButton = new JButton("Zagraj ponownie");
+        playAgainButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                resetFrame();
+                ui.playAgain();
+            }});
 
-        // Dodajemy etykietę do panelu
-        messagePanel.add(label);
+        winPanel.add(text);
+        winPanel.add(playAgainButton);
 
-        // Ustawiamy GridBagConstraints dla panelu z komunikatem
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 1.0;
-        gbc.weighty = 1.0;
-        gbc.fill = GridBagConstraints.CENTER;
 
-        // Usuwamy wszystkie komponenty z mainPanel (jeśli są) i dodajemy messagePanel
-        mainPanel.removeAll();
-        mainPanel.add(messagePanel, gbc);
+        this.remove(guessGrid);
+        this.add(winPanel);
 
-        // Odświeżamy panel główny
-        mainPanel.revalidate();
-        mainPanel.repaint();
+        this.revalidate();
+        this.repaint();
+    }
+
+    public void resetFrame() {
+        System.out.println("reset");
     }
 
     

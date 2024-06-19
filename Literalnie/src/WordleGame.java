@@ -7,10 +7,11 @@ public class WordleGame {
     public WordleGame() {
         this.dictionary = new WordDictionary("Literalnie/resources/polish_words.txt");
         this.gameLogic = new GameLogic();
-        this.userInterface = new UserInterface();
+        this.userInterface = new UserInterface(this);
     }
 
     public void initializeNewGame() {
+        System.out.println("nowa grar");
         gameLogic.initializeGame();
 
         while (!gameLogic.isGameOver()) {
@@ -31,8 +32,7 @@ public class WordleGame {
         else {
             userInterface.handleLoss();
         }
-        
-        // czekamy na input czy chce grac ponownie jesli tak to this.initializeNewGame
+    
     }
 
         
