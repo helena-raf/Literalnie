@@ -96,12 +96,19 @@ public class Frame extends JFrame {
 
     
     public void playAgainClicked() {
-        this.remove(guessGrid);
         this.guessGrid = new GuessGrid();
         this.add(guessGrid, "mainScreen");
         cardLayout.show(getContentPane(), "mainScreen");
     }
 
+    public void tooShortInfo() {
+        guessGrid.setTooShortInfoVisible(true);
+        guessGrid.repaint();
+    }
 
-    
+    public void doesNotExistInfo() {
+        guessGrid.setDoesNotExistInfoVisible(true);
+        guessGrid.repaint();
+    }
+
 }

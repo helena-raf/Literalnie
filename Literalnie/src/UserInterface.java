@@ -19,9 +19,12 @@ public class UserInterface {
     }
 
     public void notifyWordTooShort() {
-        System.out.println("za krotkie");
+        frame.tooShortInfo();
     }
 
+    public void notifyWordDoesNotExist() {
+        frame.doesNotExistInfo();
+    }
 
     public synchronized String getGuessFromUser() {
         try {

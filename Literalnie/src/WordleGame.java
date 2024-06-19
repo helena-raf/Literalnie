@@ -22,7 +22,7 @@ public class WordleGame {
                 userInterface.nextRow();
             }
             else {
-                System.out.println("word doesnt exist!!");
+                userInterface.notifyWordDoesNotExist();
             }
         }
 
