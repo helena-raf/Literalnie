@@ -49,21 +49,21 @@ public class GameLogic {
     public void colorGuess() {
         List<Character> correctLetters = new ArrayList<>();
         // lista lettersToCompare zawiera literki ktore bedziemy usuwac po porownaniu ich
-        
         for (int i = 0; i < 5; i++) {
             char correctLetter = correctWord.getCharFromPos(i);
             correctLetters.add(correctLetter);
+        }
+
+        for (int i = 0; i < 5; i++) {
+            char correctLetter = correctWord.getCharFromPos(i);
+            char guessLetter = currentGuess.getCharFromPos(i);
 
             if (currentGuess.isLetterAtPosition(correctLetter, i)) {
                 currentGuess.colorLetterAtPos(i, MyColor.GREEN);
                 correctLetters.remove((Character) correctLetter);
             }
-        }
 
-        for (int i = 0; i < 5; i++) {
-            char guessLetter = currentGuess.getCharFromPos(i);
-
-            if (correctLetters.contains(guessLetter)) {
+            else if (correctLetters.contains(guessLetter)) {
                 currentGuess.colorLetterAtPos(i, MyColor.YELLOW);
                 correctLetters.remove((Character) guessLetter);
             }
