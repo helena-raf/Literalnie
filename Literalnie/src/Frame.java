@@ -5,24 +5,33 @@ import javax.swing.*;
 public class Frame extends JFrame {
     public GuessGrid guessGrid;
     private UserInterface ui;
-    private JPanel winPanel;
-    private JPanel lossPanel;
-    private JLabel textOnLossPanel;
+    private JLabel winMessage;
+    private JLabel lossMessage;
     private JLayeredPane main;
+    private int nextLayerNumber;
+    private JLabel tooShort;
+    private JLabel doesntExist;
+    private JButton playAgainButton;
 
     public Frame(UserInterface ui) {
         this.ui = ui;
         this.guessGrid = new GuessGrid();
-        this.winPanel = new JPanel();
-        this.lossPanel = new JPanel();
-        this.textOnLossPanel = new JLabel();
+        this.winMessage = new JLabel();
+        this.lossMessage = new JLabel();
         this.main = new JLayeredPane();
+        this.nextLayerNumber = 4;
+        this.tooShort = new JLabel();
+        this.doesntExist = new JLabel();
 
-        setUpLossPanel();
-        setUpWinPanel();
+        setUpLossMessage();
+        setUpWinMessage();
+        setUpTooShort();
+        setUpDoesntExist();
 
         guessGrid.setBounds(0, 0, 300, 400);
-        main.add(guessGrid, JLayeredPane.DEFAULT_LAYER);
+        main.add(guessGrid, 3);
+        main.add(winMessage, 2);
+        main.add(lossMessage, 1);
 
         main.setBounds(0, 0, 400, 300);
         add(main, BorderLayout.CENTER);
@@ -40,6 +49,13 @@ public class Frame extends JFrame {
         });
         this.setFocusable(true);
         this.requestFocusInWindow();
+        this.playAgainButton = new JButton("Zagraj ponownie");
+        playAgainButton.setBounds(100, 100, 50, 50);
+        playAgainButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                playAgainClicked();
+            }});
     }
 
     public void handleKeyPressed(KeyEvent e) {
@@ -56,62 +72,70 @@ public class Frame extends JFrame {
         }
     }
 
-    public void setUpWinPanel() {
-        winPanel.setLayout(new GridBagLayout());
-        winPanel.setBackground(Color.WHITE); 
-
-        JLabel text = new JLabel("Wygrana!");
-        
-        JButton playAgainButton = new JButton("Zagraj ponownie");
-        playAgainButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                playAgainClicked();
-            }});
-
-        winPanel.add(text);
-        winPanel.add(playAgainButton);
+    public void setUpWinMessage() {
+        winMessage.setBounds(0, 0, 400, 300);
+        winMessage.setText("Wygrana!");
     }
 
-    public void setUpLossPanel() {
-        lossPanel.setLayout(new GridBagLayout());
-        lossPanel.setBackground(Color.WHITE); 
-        
-        JButton playAgainButton = new JButton("Zagraj ponownie");
-        playAgainButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                playAgainClicked();
-            }});
+    public void setUpLossMessage() {
+        lossMessage.setBounds(0, 0, 400, 300);
+        lossMessage.setText("przegrana");
+    }
 
-        lossPanel.add(textOnLossPanel);
-        lossPanel.add(playAgainButton);
+    public void setUpTooShort() {
+        tooShort.setBounds(100, 100, 50, 50);
+        tooShort.setText("za krotkie");
+    }
+
+    public void setUpDoesntExist() {
+        doesntExist.setBounds(100, 100, 50, 50);
+        doesntExist.setText("nie istnieje");
     }
 
     public void showWinMessage() {
-        cardLayout.show(getContentPane(), "winScreen");
+        main.setLayer(winMessage, nextLayerNumber);
+        this.nextLayerNumber += 1;
+        main.add(playAgainButton);
+        main.setLayer(playAgainButton, nextLayerNumber);
+        this.nextLayerNumber += 1;
     }
 
     public void showLossMessage(String correctWord) {
-        textOnLossPanel.setText("poprawne slowo "+correctWord);
-        cardLayout.show(getContentPane(), "lossScreen");
+        main.setLayer(lossMessage, nextLayerNumber);
+        this.nextLayerNumber += 1;
+        main.add(playAgainButton);
+        main.setLayer(playAgainButton, nextLayerNumber);
+        this.nextLayerNumber += 1;
     }
 
     
     public void playAgainClicked() {
-        this.guessGrid = new GuessGrid();
-        this.add(guessGrid, "mainScreen");
-        cardLayout.show(getContentPane(), "mainScreen");
+        main.remove(playAgainButton);
+        GuessGrid newGuessGrid = new GuessGrid();
+    
+        newGuessGrid.setBounds(0, 0, 300, 400);
+        main.add(newGuessGrid);
+        main.setLayer(newGuessGrid, nextLayerNumber);
+        this.nextLayerNumber += 1;
+
+        this.guessGrid = newGuessGrid;
+        main.revalidate();
+        main.repaint();
+        newGuessGrid.requestFocusInWindow();
+        newGuessGrid.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                handleKeyPressed(e); 
+            }
+        });
     }
 
     public void tooShortInfo() {
-        guessGrid.setTooShortInfoVisible(true);
-        guessGrid.repaint();
+       System.out.println("za krotkir ");
     }
 
     public void doesNotExistInfo() {
-        guessGrid.setDoesNotExistInfoVisible(true);
-        guessGrid.repaint();
+        
     }
 
 }
