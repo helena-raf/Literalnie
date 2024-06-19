@@ -1,7 +1,7 @@
 public class UserInterface {
     private Frame frame;
     private String lastGuess;
-    private WordleGame game;
+    public WordleGame game;
 
     public UserInterface(WordleGame game) {
         this.frame = new Frame(this);
@@ -52,9 +52,7 @@ public class UserInterface {
         System.out.println("przegranarko");
     }
 
-    public void playAgain() {
-        game.initializeNewGame();
-    }
+    
 
 
    

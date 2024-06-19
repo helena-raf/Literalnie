@@ -1,26 +1,26 @@
 import java.awt.event.*;
 import java.awt.*;
-
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class Frame extends JFrame {
     public GuessGrid guessGrid;
     private UserInterface ui;
+    private JPanel winPanel;
+    private CardLayout cardLayout;
 
     public Frame(UserInterface ui) {
-        this.guessGrid = new GuessGrid();
         this.ui = ui;
-
-        this.add(guessGrid);
+        this.guessGrid = new GuessGrid();
+        this.winPanel = new JPanel();
+        setUpWinPanel();
+        this.cardLayout = new CardLayout();
+        this.setLayout(cardLayout);
+        this.add(guessGrid, "mainScreen");
+        this.add(winPanel, "winScreen");
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setPreferredSize(new Dimension(300, 400));
-        this.pack();
+        pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.addKeyListener(new KeyAdapter() {
@@ -30,7 +30,6 @@ public class Frame extends JFrame {
             }
         });
     }
-
 
     public void handleKeyPressed(KeyEvent e) {
         char keyChar = e.getKeyChar();
@@ -46,8 +45,7 @@ public class Frame extends JFrame {
         }
     }
 
-    public void showWinMessage() {
-        JPanel winPanel = new JPanel();
+    public void setUpWinPanel() {
         winPanel.setLayout(new GridBagLayout());
         winPanel.setBackground(Color.WHITE); 
 
@@ -58,22 +56,19 @@ public class Frame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 resetFrame();
-                ui.playAgain();
+                ui.game.initializeNewGame();
             }});
 
         winPanel.add(text);
         winPanel.add(playAgainButton);
+    }
 
-
-        this.remove(guessGrid);
-        this.add(winPanel);
-
-        this.revalidate();
-        this.repaint();
+    public void showWinMessage() {
+        cardLayout.show(getContentPane(), "winScreen");
     }
 
     public void resetFrame() {
-        System.out.println("reset");
+        getContentPane().removeAll();
     }
 
     
