@@ -48,8 +48,9 @@ public class UserInterface {
         game.initializeNewGame();
     }
 
-    public void handleLoss() {
-        System.out.println("przegranarko");
+    public void handleLoss(String correctWord) {
+        frame.showLossMessage(correctWord);
+        game.initializeNewGame();
     }
 
     

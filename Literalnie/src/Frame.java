@@ -6,17 +6,20 @@ public class Frame extends JFrame {
     public GuessGrid guessGrid;
     private UserInterface ui;
     private JPanel winPanel;
+    private JPanel lossPanel;
     private CardLayout cardLayout;
 
     public Frame(UserInterface ui) {
         this.ui = ui;
         this.guessGrid = new GuessGrid();
         this.winPanel = new JPanel();
+        this.lossPanel = new JPanel();
         setUpWinPanel();
         this.cardLayout = new CardLayout();
         this.setLayout(cardLayout);
         this.add(guessGrid, "mainScreen");
         this.add(winPanel, "winScreen");
+        this.add(lossPanel, "lossScreen");
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setPreferredSize(new Dimension(300, 400));
@@ -64,8 +67,31 @@ public class Frame extends JFrame {
         winPanel.add(playAgainButton);
     }
 
+    public void setUpLossPanel(String correctWord) {
+        lossPanel.setLayout(new GridBagLayout());
+        lossPanel.setBackground(Color.WHITE); 
+
+        JLabel text = new JLabel("Przegrana... "+correctWord);
+        
+        JButton playAgainButton = new JButton("Zagraj ponownie");
+        playAgainButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                playAgainClicked();
+            }});
+
+        lossPanel.add(text);
+        lossPanel.add(playAgainButton);
+    }
+
     public void showWinMessage() {
         cardLayout.show(getContentPane(), "winScreen");
+    }
+
+    public void showLossMessage(String correctWord) {
+        setUpLossPanel(correctWord);
+
+        cardLayout.show(getContentPane(), "lossScreen");
     }
 
     

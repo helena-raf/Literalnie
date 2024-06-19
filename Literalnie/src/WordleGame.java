@@ -28,14 +28,21 @@ public class WordleGame {
 
         if (gameLogic.hasPlayerWon()) {
             try {
-                Thread.sleep(3000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
             userInterface.handleWin();
         }
         else {
-            userInterface.handleLoss();
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            userInterface.handleLoss(gameLogic.getCorrectWord().getString());
         }
     
     }

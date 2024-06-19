@@ -84,4 +84,8 @@ public class GameLogic {
     public boolean hasPlayerWon() {
         return hasPlayerWon;
     }
+
+    public Word getCorrectWord() {
+        return correctWord;
+    }
 }
