@@ -19,7 +19,7 @@ public class Frame extends JFrame {
         this.winMessage = new JLabel();
         this.lossMessage = new JLabel();
         this.main = new JLayeredPane();
-        this.nextLayerNumber = 4;
+        this.nextLayerNumber = 6;
         this.tooShort = new JLabel();
         this.doesntExist = new JLabel();
 
@@ -29,9 +29,11 @@ public class Frame extends JFrame {
         setUpDoesntExist();
 
         guessGrid.setBounds(0, 0, 300, 400);
-        main.add(guessGrid, 3);
-        main.add(winMessage, 2);
-        main.add(lossMessage, 1);
+        main.add(guessGrid, 5);
+        main.add(winMessage, 4);
+        main.add(lossMessage, 3);
+        main.add(tooShort, 2);
+        main.add(doesntExist, 1);
 
         main.setBounds(0, 0, 400, 300);
         add(main, BorderLayout.CENTER);
@@ -94,18 +96,18 @@ public class Frame extends JFrame {
 
     public void showWinMessage() {
         main.setLayer(winMessage, nextLayerNumber);
-        this.nextLayerNumber += 1;
+        this.nextLayerNumber++;
         main.add(playAgainButton);
         main.setLayer(playAgainButton, nextLayerNumber);
-        this.nextLayerNumber += 1;
+        this.nextLayerNumber++;
     }
 
     public void showLossMessage(String correctWord) {
         main.setLayer(lossMessage, nextLayerNumber);
-        this.nextLayerNumber += 1;
+        this.nextLayerNumber++;
         main.add(playAgainButton);
         main.setLayer(playAgainButton, nextLayerNumber);
-        this.nextLayerNumber += 1;
+        this.nextLayerNumber++;
     }
 
     
@@ -116,7 +118,7 @@ public class Frame extends JFrame {
         newGuessGrid.setBounds(0, 0, 300, 400);
         main.add(newGuessGrid);
         main.setLayer(newGuessGrid, nextLayerNumber);
-        this.nextLayerNumber += 1;
+        this.nextLayerNumber++;
 
         this.guessGrid = newGuessGrid;
         main.revalidate();
@@ -129,13 +131,30 @@ public class Frame extends JFrame {
             }
         });
     }
-
+    
     public void tooShortInfo() {
-       System.out.println("za krotkir ");
+        main.setLayer(tooShort, nextLayerNumber);
+        this.nextLayerNumber++;
+
+        Timer timer = new Timer(2000, e -> {
+            main.setLayer(guessGrid, nextLayerNumber);
+            nextLayerNumber++;
+        });
+        timer.setRepeats(false); 
+        timer.start();
+
     }
 
     public void doesNotExistInfo() {
-        
+        main.setLayer(doesntExist, nextLayerNumber);
+        this.nextLayerNumber++;
+
+        Timer timer = new Timer(2000, e -> {
+            main.setLayer(guessGrid, nextLayerNumber);
+            nextLayerNumber++;
+        });
+        timer.setRepeats(false); 
+        timer.start();
     }
 
 }
