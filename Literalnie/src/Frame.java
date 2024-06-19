@@ -55,8 +55,7 @@ public class Frame extends JFrame {
         playAgainButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                resetFrame();
-                ui.game.initializeNewGame();
+                playAgainClicked();
             }});
 
         winPanel.add(text);
@@ -68,7 +67,11 @@ public class Frame extends JFrame {
     }
 
     public void resetFrame() {
-        getContentPane().removeAll();
+        cardLayout.show(rootPane, getName());
+    }
+
+    public void playAgainClicked() {
+        cardLayout.show(getContentPane(), "mainScreen");
     }
 
     
