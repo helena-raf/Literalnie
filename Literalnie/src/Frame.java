@@ -7,8 +7,8 @@ public class Frame extends JFrame {
     private UserInterface ui;
     private JPanel winPanel;
     private JPanel lossPanel;
-    private CardLayout cardLayout;
     private JLabel textOnLossPanel;
+    private JLayeredPane main;
 
     public Frame(UserInterface ui) {
         this.ui = ui;
@@ -16,13 +16,16 @@ public class Frame extends JFrame {
         this.winPanel = new JPanel();
         this.lossPanel = new JPanel();
         this.textOnLossPanel = new JLabel();
+        this.main = new JLayeredPane();
+
         setUpLossPanel();
         setUpWinPanel();
-        this.cardLayout = new CardLayout();
-        this.setLayout(cardLayout);
-        this.add(guessGrid, "mainScreen");
-        this.add(winPanel, "winScreen");
-        this.add(lossPanel, "lossScreen");
+
+        guessGrid.setBounds(0, 0, 300, 400);
+        main.add(guessGrid, JLayeredPane.DEFAULT_LAYER);
+
+        main.setBounds(0, 0, 400, 300);
+        add(main, BorderLayout.CENTER);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setPreferredSize(new Dimension(300, 400));
