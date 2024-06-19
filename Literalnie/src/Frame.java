@@ -8,12 +8,15 @@ public class Frame extends JFrame {
     private JPanel winPanel;
     private JPanel lossPanel;
     private CardLayout cardLayout;
+    private JLabel textOnLossPanel;
 
     public Frame(UserInterface ui) {
         this.ui = ui;
         this.guessGrid = new GuessGrid();
         this.winPanel = new JPanel();
         this.lossPanel = new JPanel();
+        this.textOnLossPanel = new JLabel();
+        setUpLossPanel();
         setUpWinPanel();
         this.cardLayout = new CardLayout();
         this.setLayout(cardLayout);
@@ -67,11 +70,9 @@ public class Frame extends JFrame {
         winPanel.add(playAgainButton);
     }
 
-    public void setUpLossPanel(String correctWord) {
+    public void setUpLossPanel() {
         lossPanel.setLayout(new GridBagLayout());
         lossPanel.setBackground(Color.WHITE); 
-
-        JLabel text = new JLabel("Przegrana... "+correctWord);
         
         JButton playAgainButton = new JButton("Zagraj ponownie");
         playAgainButton.addActionListener(new ActionListener() {
@@ -80,7 +81,7 @@ public class Frame extends JFrame {
                 playAgainClicked();
             }});
 
-        lossPanel.add(text);
+        lossPanel.add(textOnLossPanel);
         lossPanel.add(playAgainButton);
     }
 
@@ -89,8 +90,7 @@ public class Frame extends JFrame {
     }
 
     public void showLossMessage(String correctWord) {
-        setUpLossPanel(correctWord);
-
+        textOnLossPanel.setText("poprawne slowo "+correctWord);
         cardLayout.show(getContentPane(), "lossScreen");
     }
 
