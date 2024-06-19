@@ -68,10 +68,6 @@ public class Frame extends JFrame {
         cardLayout.show(getContentPane(), "winScreen");
     }
 
-    public void resetFrame() {
-        cardLayout.show(rootPane, getName());
-    }
-
     
     public void playAgainClicked() {
         this.remove(guessGrid);

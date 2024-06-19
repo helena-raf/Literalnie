@@ -22,7 +22,6 @@ public class UserInterface {
         System.out.println("za krotkie");
     }
 
-    ////////////////////////////////////////////////
 
     public synchronized String getGuessFromUser() {
         try {
@@ -46,6 +45,7 @@ public class UserInterface {
     }
     public void handleWin() {
         frame.showWinMessage();
+        game.initializeNewGame();
     }
 
     public void handleLoss() {
