@@ -9,13 +9,11 @@ public class GameLogic {
     private boolean hasPlayerWon;
 
 
-    public void initializeGame() {
+    public void initializeGame(String correctWord) {
         this.attemptCount = 0;
         this.isGameOver = false;
         this.hasPlayerWon = false;
-        // pozniej correctWord ma byc losowane!
-        this.correctWord = new Word("rzeka");
-        //////////////////////
+        this.correctWord = new Word(correctWord);
     }
 
     public void setCurrentGuess(String guess) {

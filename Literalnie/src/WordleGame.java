@@ -5,14 +5,14 @@ public class WordleGame {
 
 
     public WordleGame() {
-        this.dictionary = new WordDictionary("Literalnie/resources/polish_words.txt");
+        this.dictionary = new WordDictionary("Literalnie/resources/polish_words.txt", "Literalnie/resources/solutions.txt");
         this.gameLogic = new GameLogic();
         this.userInterface = new UserInterface(this);
     }
 
     public void initializeNewGame() {
-        System.out.println("nowa grar");
-        gameLogic.initializeGame();
+        String solution = dictionary.getRandomSolution();
+        gameLogic.initializeGame(solution);
 
         while (!gameLogic.isGameOver()) {
             String input = userInterface.getGuessFromUser();
