@@ -29,6 +29,8 @@ public class Frame extends JFrame {
                 handleKeyPressed(e);
             }
         });
+        this.setFocusable(true);
+        this.requestFocusInWindow();
     }
 
     public void handleKeyPressed(KeyEvent e) {
@@ -70,9 +72,14 @@ public class Frame extends JFrame {
         cardLayout.show(rootPane, getName());
     }
 
+    
     public void playAgainClicked() {
+        this.remove(guessGrid);
+        this.guessGrid = new GuessGrid();
+        this.add(guessGrid, "mainScreen");
         cardLayout.show(getContentPane(), "mainScreen");
     }
+
 
     
 }

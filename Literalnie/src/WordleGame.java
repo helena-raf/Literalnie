@@ -27,6 +27,11 @@ public class WordleGame {
         }
 
         if (gameLogic.hasPlayerWon()) {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             userInterface.handleWin();
         }
         else {
