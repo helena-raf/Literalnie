@@ -1,5 +1,9 @@
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+
 import java.awt.Color;
+import java.awt.Font;
 
 public class GridCell extends JLabel {
     private char letter;
@@ -9,12 +13,16 @@ public class GridCell extends JLabel {
         this.empty = true;
         this.setOpaque(true);
         this.setBackground(Color.WHITE);
+        this.setBorder(BorderFactory.createLineBorder(new Color(220, 220, 220), 2));
     }
 
     public void setLetter(char letter) {
         this.letter = letter;
         this.empty = false;
         this.setText(Character.toString(letter));
+        this.setHorizontalAlignment(SwingConstants.CENTER); 
+        this.setVerticalAlignment(SwingConstants.CENTER);  
+        this.setFont(new Font("Arial", Font.BOLD, 24));
     }
 
     public void deleteLetter() {
@@ -31,14 +39,15 @@ public class GridCell extends JLabel {
     }
 
     public void setColor(MyColor color) {
+        this.setBorder(null);
         if (color == MyColor.GREEN) {
-            this.setBackground(Color.GREEN);
+            this.setBackground(new Color(97, 140, 86));
         }
         else if (color == MyColor.YELLOW) {
-            this.setBackground(Color.YELLOW);
+            this.setBackground(new Color(217, 187, 24));
         }
         else {
-            this.setBackground(Color.GRAY);
+            this.setBackground(new Color(120, 124, 127));
         }
     }
 
