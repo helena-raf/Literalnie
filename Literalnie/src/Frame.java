@@ -1,6 +1,7 @@
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 public class Frame extends JFrame {
     public GuessGrid guessGrid;
@@ -147,12 +148,16 @@ public class Frame extends JFrame {
     }
 
     public void setUpInfoPanel() {
+        JPanel panel = new JPanel();
         infoPanel.setBounds(50, 50, 350, 500);
-        infoPanel.setLayout(new GridLayout(7, 1, 10, 10));
+        infoPanel.setLayout(new BorderLayout());
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        panel.setLayout(new GridLayout(7, 1, 5, 5));
+        
         
         JLabel text1 = new JLabel("<html>Wpisz dowolne 5-literowe słowo i naciśnij enter, by spróbować odgadnąć hasło.<br>Po każdej próbie, litery zostaną odpowiednio zaznaczone:</html>");
-        JLabel text2 = new JLabel("<html>Jeśli litera podświetlona jest na zielono, występuje ona w haśle w tym samym miejscu</html>");
-        JLabel text3 = new JLabel("<html>Jeśli litera podświetlona jest na żółto, występuje ona w haśle, lecz w innym miejscu</html>");
+        JLabel text2 = new JLabel("<html>Jeśli litera podświetlona jest na zielono, występuje ona w haśle w tym samym miejscu.</html>");
+        JLabel text3 = new JLabel("<html>Jeśli litera podświetlona jest na żółto, występuje ona w haśle, lecz w innym miejscu.</html>");
         JLabel text4 = new JLabel("<html>Jeśli litera nie jest podświetlona, nie występuje w haśle<br>Masz 6 prób, aby odgadnąć hasło. Powodzenia!</html>");
 
         JPanel ex = new JPanel();
@@ -170,20 +175,27 @@ public class Frame extends JFrame {
         l4.setLetter('k');
         l5.setLetter('a');
 
+        l1.setColor(MyColor.GREEN);
+        l2.setColor(MyColor.GRAY);
+        l3.setColor(MyColor.YELLOW);
+        l4.setColor(MyColor.GRAY);
+        l5.setColor(MyColor.GRAY);
+
         ex.add(l1);
         ex.add(l2);
         ex.add(l3);
         ex.add(l4);
         ex.add(l5);
         
-        infoPanel.add(text1);
-        infoPanel.add(ex);
-        infoPanel.add(text2);
-        infoPanel.add(text3);
-        infoPanel.add(text4);
+        panel.add(text1);
+        panel.add(ex);
+        panel.add(text2);
+        panel.add(text3);
+        panel.add(text4);
         infoPanel.setBorder(BorderFactory.createLineBorder(new Color(220, 220, 220), 2));;
-        infoPanel.setBackground(Color.WHITE);
-        infoPanel.setOpaque(true);
+        panel.setBackground(Color.WHITE);
+        panel.setOpaque(true);
+        infoPanel.add(panel, BorderLayout.CENTER);
     }
 
     public void setUpTitle() {
