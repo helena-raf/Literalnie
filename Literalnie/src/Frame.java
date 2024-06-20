@@ -146,12 +146,9 @@ public class Frame extends JFrame {
         GuessGrid newGuessGrid = new GuessGrid();
 
         main.add(newGuessGrid);
-        main.setLayer(newGuessGrid, nextLayerNumber);
-        this.nextLayerNumber++;
-
         this.guessGrid = newGuessGrid;
-        main.revalidate();
-        main.repaint();
+        cover();
+        
         newGuessGrid.requestFocusInWindow();
         newGuessGrid.addKeyListener(new KeyAdapter() {
             @Override
@@ -166,8 +163,7 @@ public class Frame extends JFrame {
         this.nextLayerNumber++;
 
         Timer timer = new Timer(2000, e -> {
-            main.setLayer(guessGrid, nextLayerNumber);
-            nextLayerNumber++;
+            cover();
         });
         timer.setRepeats(false); 
         timer.start();
@@ -179,11 +175,19 @@ public class Frame extends JFrame {
         this.nextLayerNumber++;
 
         Timer timer = new Timer(2000, e -> {
-            main.setLayer(guessGrid, nextLayerNumber);
-            nextLayerNumber++;
+            cover();
         });
         timer.setRepeats(false); 
         timer.start();
+    }
+
+    public void cover() {
+        main.setLayer(guessGrid, nextLayerNumber);
+        nextLayerNumber++;
+        main.setLayer(title, nextLayerNumber);
+        nextLayerNumber++;
+        main.revalidate();
+        main.repaint();
     }
 
 }
