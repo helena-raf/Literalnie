@@ -45,7 +45,7 @@ public class GridCell extends JLabel {
             this.setBackground(new Color(97, 140, 86));
         }
         else if (color == MyColor.YELLOW) {
-            this.setBackground(new Color(217, 187, 24));
+            this.setBackground(new Color(201, 177, 57));
         }
         else {
             this.setBackground(new Color(120, 124, 127));

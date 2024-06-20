@@ -51,6 +51,7 @@ public class Frame extends JFrame {
         });
         this.setFocusable(true);
         this.requestFocusInWindow();
+        this.setResizable(false);
         this.playAgainButton = new JButton("Zagraj ponownie");
         playAgainButton.setBounds(100, 100, 50, 50);
         playAgainButton.addActionListener(new ActionListener() {
