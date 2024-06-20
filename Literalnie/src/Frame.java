@@ -176,7 +176,9 @@ public class Frame extends JFrame {
 
 
     public void showWinMessage(String correctWord) {
-        winMessage.setText("<html>Gratulacje! Udało Ci się odgadnąć słowo:<br>"+correctWord+"</html>");
+        correctWord = correctWord.toUpperCase();
+        String boldCorrectWord = "<html><b>" + correctWord + "</b></html>";
+        winMessage.setText("<html>Gratulacje! Udało Ci się odgadnąć słowo:<br>"+boldCorrectWord+"</html>");
         main.setLayer(winMessage, nextLayerNumber);
         this.nextLayerNumber++;
         main.add(playAgainButton);
@@ -185,7 +187,9 @@ public class Frame extends JFrame {
     }
 
     public void showLossMessage(String correctWord) {
-        lossMessage.setText("<html>Niestety, nie udało Ci się odgadnąć słowa...<br>Poprawne słowo to "+correctWord+"</html>");
+        correctWord = correctWord.toUpperCase();
+        String boldCorrectWord = "<html><b>" + correctWord + "</b></html>";
+        lossMessage.setText("<html>Niestety, nie udało Ci się odgadnąć słowa...<br>Poprawne słowo to "+boldCorrectWord+"</html>");
         main.setLayer(lossMessage, nextLayerNumber);
         this.nextLayerNumber++;
         main.add(playAgainButton);
