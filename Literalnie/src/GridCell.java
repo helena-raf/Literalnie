@@ -40,6 +40,7 @@ public class GridCell extends JLabel {
 
     public void setColor(MyColor color) {
         this.setBorder(null);
+        this.setForeground(Color.WHITE);
         if (color == MyColor.GREEN) {
             this.setBackground(new Color(97, 140, 86));
         }
