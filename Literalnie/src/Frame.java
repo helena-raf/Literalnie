@@ -16,7 +16,6 @@ public class Frame extends JFrame {
     private Font font;
     private JButton infoButton;
     private JLabel infoLabel;
-    
 
     public Frame(UserInterface ui) {
         this.ui = ui;
@@ -24,12 +23,13 @@ public class Frame extends JFrame {
         this.winMessage = new JLabel();
         this.lossMessage = new JLabel();
         this.main = new JLayeredPane();
-        this.nextLayerNumber = 8;
+        this.nextLayerNumber = 9;
         this.tooShort = new JLabel();
         this.doesntExist = new JLabel();
         this.title = new JLabel();
         this.font = new Font("Arial", Font.PLAIN, 15);
         this.infoLabel = new JLabel();
+        this.infoButton = new JButton("info");
 
         setUpTitle();
         setUpLossMessage();
@@ -47,7 +47,7 @@ public class Frame extends JFrame {
         main.add(tooShort, 3);
         main.add(doesntExist, 2);
         main.add(infoLabel,1);
-        cover();
+        
 
         //main.setBounds(0, 0, 400, 300);
         add(main, BorderLayout.CENTER);
@@ -56,7 +56,7 @@ public class Frame extends JFrame {
         this.setSize(450, 600);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        this.addKeyListener(new KeyAdapter() {
+        guessGrid.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 handleKeyPressed(e);
@@ -72,6 +72,16 @@ public class Frame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 playAgainClicked();
             }});
+        
+        infoButton.setBounds(0,0,50,50);
+        infoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                infoButtonClicked();
+            }});
+        main.add(infoButton, 8);
+        cover();
+       
     }
 
     public void handleKeyPressed(KeyEvent e) {
@@ -163,18 +173,21 @@ public class Frame extends JFrame {
     public void playAgainClicked() {
         main.remove(playAgainButton);
         GuessGrid newGuessGrid = new GuessGrid();
-
-        main.add(newGuessGrid);
-        this.guessGrid = newGuessGrid;
-        cover();
-        
-        newGuessGrid.requestFocusInWindow();
         newGuessGrid.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                handleKeyPressed(e); 
+                handleKeyPressed(e);
             }
         });
+        main.add(newGuessGrid);
+        
+        this.guessGrid = newGuessGrid;
+        cover();
+    }
+
+    public void infoButtonClicked() {
+        System.out.println("info");
+        cover();
     }
     
     public void tooShortInfo() {
@@ -205,8 +218,14 @@ public class Frame extends JFrame {
         nextLayerNumber++;
         main.setLayer(title, nextLayerNumber);
         nextLayerNumber++;
+        main.setLayer(infoButton, nextLayerNumber);
+        nextLayerNumber++;
+        guessGrid.requestFocusInWindow();
+        
+        
         main.revalidate();
         main.repaint();
+        
     }
 
 }
