@@ -30,7 +30,7 @@ public class Frame extends JFrame {
         this.tooShort = new JLabel();
         this.doesntExist = new JLabel();
         this.title = new JLabel();
-        this.font = new Font("Arial", Font.PLAIN, 15);
+        this.font = new Font("Arial", Font.PLAIN, 17);
         this.infoPanel = new JPanel();
         this.infoButton = new JButton("?");
         infoButton.setFont(new Font("Arial", Font.BOLD, 30));
@@ -72,7 +72,8 @@ public class Frame extends JFrame {
         this.requestFocusInWindow();
         this.setResizable(false);
         this.playAgainButton = new JButton("Zagraj ponownie");
-        playAgainButton.setBounds(100, 100, 50, 50);
+        playAgainButton.setBounds(125, 340, 200, 50);
+        playAgainButton.setFont(font);
         playAgainButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -113,7 +114,7 @@ public class Frame extends JFrame {
 
     public void setUpWinMessage() {
         winMessage.setBorder(BorderFactory.createLineBorder(new Color(220, 220, 220), 2));;
-        winMessage.setBounds(50, 100, 300, 300);
+        winMessage.setBounds(95, 140, 260, 260);
         winMessage.setOpaque(true);
         winMessage.setBackground(Color.WHITE);
         
@@ -121,7 +122,7 @@ public class Frame extends JFrame {
 
     public void setUpLossMessage() {
         lossMessage.setBorder(BorderFactory.createLineBorder(new Color(220, 220, 220), 2));;
-        lossMessage.setBounds(0, 0, 400, 300);
+        lossMessage.setBounds(95, 140, 260, 260);
         lossMessage.setOpaque(true);
         lossMessage.setBackground(Color.WHITE);
         lossMessage.setHorizontalAlignment(SwingConstants.CENTER);
@@ -236,6 +237,7 @@ public class Frame extends JFrame {
         correctWord = correctWord.toUpperCase();
         String boldCorrectWord = "<html><b>" + correctWord + "</b></html>";
         lossMessage.setText("<html><div style='text-align: center;'>Niestety, nie udało Ci się odgadnąć słowa...<br>Poprawne słowo to "+boldCorrectWord+"</div></html>");
+        lossMessage.setFont(new Font("Arial", Font.PLAIN, 18));
         main.setLayer(lossMessage, nextLayerNumber);
         this.nextLayerNumber++;
         main.add(playAgainButton);
