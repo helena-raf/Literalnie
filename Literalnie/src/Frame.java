@@ -183,10 +183,9 @@ public class Frame extends JFrame {
     public void playAgainClicked() {
         main.remove(playAgainButton);
         GuessGrid newGuessGrid = new GuessGrid();
-        newGuessGrid.addKeyListener(keyAdapter);
         main.add(newGuessGrid);
-        
         this.guessGrid = newGuessGrid;
+        unblockKeyboard();
         cover();
     }
 
@@ -239,6 +238,14 @@ public class Frame extends JFrame {
         main.revalidate();
         main.repaint();
         
+    }
+
+    public void blockKeyboard() {
+        guessGrid.removeKeyListener(keyAdapter);
+    }
+
+    public void unblockKeyboard() {
+        guessGrid.addKeyListener(keyAdapter);
     }
 
 }

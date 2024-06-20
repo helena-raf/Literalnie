@@ -47,11 +47,23 @@ public class UserInterface {
         }
     }
     public void handleWin() {
+        frame.blockKeyboard();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         frame.showWinMessage();
         game.initializeNewGame();
     }
 
     public void handleLoss(String correctWord) {
+        frame.blockKeyboard();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         frame.showLossMessage(correctWord);
         game.initializeNewGame();
     }
