@@ -16,7 +16,7 @@ public class Frame extends JFrame {
     private Font font;
     private JButton infoButton;
     private JButton closeInfo;
-    private JLabel infoLabel;
+    private JPanel infoPanel;
     private KeyAdapter keyAdapter;
 
     public Frame(UserInterface ui) {
@@ -30,7 +30,7 @@ public class Frame extends JFrame {
         this.doesntExist = new JLabel();
         this.title = new JLabel();
         this.font = new Font("Arial", Font.PLAIN, 15);
-        this.infoLabel = new JLabel();
+        this.infoPanel = new JPanel();
         this.infoButton = new JButton("info");
         this.closeInfo = new JButton("X");
 
@@ -39,7 +39,7 @@ public class Frame extends JFrame {
         setUpWinMessage();
         setUpTooShort();
         setUpDoesntExist();
-        setUpInfoLabel();
+        setUpInfoPanel();
 
         //guessGrid.setBounds(0, 0, 400, 300);
         
@@ -49,7 +49,7 @@ public class Frame extends JFrame {
         main.add(lossMessage, 4);
         main.add(tooShort, 3);
         main.add(doesntExist, 2);
-        main.add(infoLabel,1);
+        main.add(infoPanel,1);
         
 
         //main.setBounds(0, 0, 400, 300);
@@ -140,20 +140,20 @@ public class Frame extends JFrame {
         doesntExist.setVerticalAlignment(SwingConstants.CENTER);
     }
 
-    public void setUpInfoLabel() {
-        infoLabel.setBounds(0, 200, 450, 80);
-        infoLabel.setText("info");
-        infoLabel.setBackground(Color.WHITE);
-        infoLabel.setOpaque(true);
-        infoLabel.setFont(font);
-        infoLabel.setForeground(Color.BLACK);
-        infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        infoLabel.setVerticalAlignment(SwingConstants.CENTER);
+    public void setUpInfoPanel() {
+        infoPanel.setBounds(0, 200, 450, 80);
+        infoPanel.setLayout(new GridLayout(2, 1, 3, 3));
+        JLabel label1 = new JLabel("info1");
+        JLabel label2 = new JLabel("info2");
+        infoPanel.add(label2);
+        infoPanel.add(label1);
+        infoPanel.setBackground(Color.GREEN);
+        infoPanel.setOpaque(true);
     }
 
     public void setUpTitle() {
         title.setBounds(0, 0, 450, 80);
-        title.setText("tytul");
+        title.setText("Literalnie");
         title.setBackground(Color.WHITE);
         title.setOpaque(true);
         title.setFont(font);
@@ -190,7 +190,7 @@ public class Frame extends JFrame {
     }
 
     public void infoButtonClicked() {
-        main.setLayer(infoLabel, nextLayerNumber);
+        main.setLayer(infoPanel, nextLayerNumber);
         this.nextLayerNumber++;
         main.add(closeInfo);
         main.setLayer(closeInfo, nextLayerNumber);
