@@ -15,6 +15,7 @@ public class Frame extends JFrame {
     private JLabel title;
     private Font font;
     private JButton infoButton;
+    private JButton closeInfo;
     private JLabel infoLabel;
 
     public Frame(UserInterface ui) {
@@ -30,6 +31,7 @@ public class Frame extends JFrame {
         this.font = new Font("Arial", Font.PLAIN, 15);
         this.infoLabel = new JLabel();
         this.infoButton = new JButton("info");
+        this.closeInfo = new JButton("X");
 
         setUpTitle();
         setUpLossMessage();
@@ -79,6 +81,13 @@ public class Frame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 infoButtonClicked();
             }});
+        closeInfo.setBounds(100,0,50,50);
+        closeInfo.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                closeInfoClicked();
+            }});
+
         main.add(infoButton, 8);
         cover();
        
@@ -186,7 +195,15 @@ public class Frame extends JFrame {
     }
 
     public void infoButtonClicked() {
-        System.out.println("info");
+        main.setLayer(infoLabel, nextLayerNumber);
+        this.nextLayerNumber++;
+        main.add(closeInfo);
+        main.setLayer(closeInfo, nextLayerNumber);
+        this.nextLayerNumber++;
+    }
+
+    public void closeInfoClicked() {
+        main.remove(closeInfo);
         cover();
     }
     
