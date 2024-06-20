@@ -19,7 +19,8 @@ public class GridCell extends JLabel {
     public void setLetter(char letter) {
         this.letter = letter;
         this.empty = false;
-        this.setText(Character.toString(letter));
+        String string = Character.toString(letter);
+        this.setText(string.toUpperCase());
         this.setHorizontalAlignment(SwingConstants.CENTER); 
         this.setVerticalAlignment(SwingConstants.CENTER);  
         this.setFont(new Font("Arial", Font.BOLD, 24));

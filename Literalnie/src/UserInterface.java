@@ -13,7 +13,7 @@ public class UserInterface {
             notifyWordTooShort();
         }
         else {
-            this.lastGuess = typedWord;
+            this.lastGuess = typedWord.toLowerCase();
             notify();
         }
     }
