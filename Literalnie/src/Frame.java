@@ -1,6 +1,7 @@
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 
 public class Frame extends JFrame {
     public GuessGrid guessGrid;
@@ -87,15 +88,21 @@ public class Frame extends JFrame {
     }
 
     public void setUpTooShort() {
-        tooShort.setBounds(100, 100, 200, 50);
+        tooShort.setBounds(75, 30, 300, 50);
         tooShort.setText("Słowo musi zawierać 5 liter!");
+        tooShort.setBackground(Color.BLACK);
+        tooShort.setOpaque(true);
+        tooShort.setFont(font);
+        tooShort.setForeground(Color.WHITE);
+        tooShort.setHorizontalAlignment(SwingConstants.CENTER);
+        tooShort.setVerticalAlignment(SwingConstants.CENTER);
     }
 
     public void setUpDoesntExist() {
+        doesntExist.setBounds(75, 30, 300, 50);
+        doesntExist.setText("Brak podanego słowa w bazie!");
         doesntExist.setBackground(Color.BLACK);
         doesntExist.setOpaque(true);
-        doesntExist.setBounds(100, 100, 200, 50);
-        doesntExist.setText("Brak podanego słowa w bazie!");
         doesntExist.setFont(font);
         doesntExist.setForeground(Color.WHITE);
         doesntExist.setHorizontalAlignment(SwingConstants.CENTER);
