@@ -112,14 +112,15 @@ public class Frame extends JFrame {
     }
 
     public void setUpWinMessage() {
-        winMessage.setBounds(100, 100, 400, 300);
+        winMessage.setBorder(BorderFactory.createLineBorder(new Color(220, 220, 220), 2));;
+        winMessage.setBounds(50, 100, 300, 300);
         winMessage.setOpaque(true);
         winMessage.setBackground(Color.WHITE);
-        winMessage.setHorizontalAlignment(SwingConstants.CENTER);
-        winMessage.setVerticalAlignment(SwingConstants.CENTER);
+        
     }
 
     public void setUpLossMessage() {
+        lossMessage.setBorder(BorderFactory.createLineBorder(new Color(220, 220, 220), 2));;
         lossMessage.setBounds(0, 0, 400, 300);
         lossMessage.setOpaque(true);
         lossMessage.setBackground(Color.WHITE);
@@ -221,7 +222,9 @@ public class Frame extends JFrame {
     public void showWinMessage(String correctWord) {
         correctWord = correctWord.toUpperCase();
         String boldCorrectWord = "<html><b>" + correctWord + "</b></html>";
-        winMessage.setText("<html>Gratulacje! Udało Ci się odgadnąć słowo:<br>"+boldCorrectWord+"</html>");
+        winMessage.setText("<html><div style='text-align: center;'>Gratulacje! Udało Ci się odgadnąć słowo:<br>"+boldCorrectWord+"</div></html>");
+       
+        winMessage.setFont(new Font("Arial", Font.PLAIN, 20));
         main.setLayer(winMessage, nextLayerNumber);
         this.nextLayerNumber++;
         main.add(playAgainButton);
@@ -232,7 +235,7 @@ public class Frame extends JFrame {
     public void showLossMessage(String correctWord) {
         correctWord = correctWord.toUpperCase();
         String boldCorrectWord = "<html><b>" + correctWord + "</b></html>";
-        lossMessage.setText("<html>Niestety, nie udało Ci się odgadnąć słowa...<br>Poprawne słowo to "+boldCorrectWord+"</html>");
+        lossMessage.setText("<html><div style='text-align: center;'>Niestety, nie udało Ci się odgadnąć słowa...<br>Poprawne słowo to "+boldCorrectWord+"</div></html>");
         main.setLayer(lossMessage, nextLayerNumber);
         this.nextLayerNumber++;
         main.add(playAgainButton);
