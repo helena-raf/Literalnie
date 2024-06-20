@@ -109,13 +109,19 @@ public class Frame extends JFrame {
     }
 
     public void setUpWinMessage() {
-        winMessage.setBounds(0, 0, 400, 300);
-        winMessage.setText("Wygrana!");
+        winMessage.setBounds(100, 100, 400, 300);
+        winMessage.setOpaque(true);
+        winMessage.setBackground(Color.WHITE);
+        winMessage.setHorizontalAlignment(SwingConstants.CENTER);
+        winMessage.setVerticalAlignment(SwingConstants.CENTER);
     }
 
     public void setUpLossMessage() {
         lossMessage.setBounds(0, 0, 400, 300);
-        lossMessage.setText("przegrana");
+        lossMessage.setOpaque(true);
+        lossMessage.setBackground(Color.WHITE);
+        lossMessage.setHorizontalAlignment(SwingConstants.CENTER);
+        lossMessage.setVerticalAlignment(SwingConstants.CENTER);
     }
 
     public void setUpTooShort() {
@@ -141,13 +147,19 @@ public class Frame extends JFrame {
     }
 
     public void setUpInfoPanel() {
-        infoPanel.setBounds(0, 200, 450, 80);
-        infoPanel.setLayout(new GridLayout(2, 1, 3, 3));
-        JLabel label1 = new JLabel("info1");
-        JLabel label2 = new JLabel("info2");
-        infoPanel.add(label2);
-        infoPanel.add(label1);
-        infoPanel.setBackground(Color.GREEN);
+        infoPanel.setBounds(50, 50, 350, 500);
+        infoPanel.setLayout(new GridLayout(7, 1, 3, 3));
+        JLabel text1 = new JLabel("info1");
+        JLabel text2 = new JLabel("info2");
+        JLabel text3 = new JLabel("info1");
+        JLabel text4 = new JLabel("info2");
+
+        infoPanel.add(text1);
+        infoPanel.add(text2);
+        infoPanel.add(text3);
+        infoPanel.add(text4);
+        infoPanel.setBorder(BorderFactory.createLineBorder(new Color(220, 220, 220), 2));;
+        infoPanel.setBackground(Color.WHITE);
         infoPanel.setOpaque(true);
     }
 
@@ -163,7 +175,8 @@ public class Frame extends JFrame {
     }
 
 
-    public void showWinMessage() {
+    public void showWinMessage(String correctWord) {
+        winMessage.setText("<html>Gratulacje! Udało Ci się odgadnąć słowo:<br>"+correctWord+"</html>");
         main.setLayer(winMessage, nextLayerNumber);
         this.nextLayerNumber++;
         main.add(playAgainButton);
@@ -172,6 +185,7 @@ public class Frame extends JFrame {
     }
 
     public void showLossMessage(String correctWord) {
+        lossMessage.setText("<html>Niestety, nie udało Ci się odgadnąć słowa...<br>Poprawne słowo to "+correctWord+"</html>");
         main.setLayer(lossMessage, nextLayerNumber);
         this.nextLayerNumber++;
         main.add(playAgainButton);

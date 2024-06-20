@@ -46,7 +46,7 @@ public class UserInterface {
             this.frame.guessGrid.colorCellInCurrentRow(i, color);
         }
     }
-    public void handleWin() {
+    public void handleWin(String correctWord) {
         frame.blockKeyboard();
         frame.blockInfoButton();
         try {
@@ -54,7 +54,7 @@ public class UserInterface {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        frame.showWinMessage();
+        frame.showWinMessage(correctWord);
         game.initializeNewGame();
     }
 

@@ -27,7 +27,7 @@ public class WordleGame {
         }
 
         if (gameLogic.hasPlayerWon()) {
-            userInterface.handleWin();
+            userInterface.handleWin(gameLogic.getCorrectWord().getString());
         }
         else {
             userInterface.handleLoss(gameLogic.getCorrectWord().getString());
