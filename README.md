@@ -10,10 +10,10 @@ każdej z nich gracz dostaje informację zwrotną.
 + Zielone litery: Litery które są na swoich miejscach.
 + Żółte litery: Litery, które występują w haśle, ale na innych pozycjach.
 
-## jak zbudować
+## Jak zbudować
 do uzupelnienia
 
-## jak uruchomić
+## Jak uruchomić
 do uzupelnienia
 
 java -jar MojaAplikacja.jar
