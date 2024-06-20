@@ -5,7 +5,7 @@ public class WordleGame {
 
 
     public WordleGame() {
-        this.dictionary = new WordDictionary("Literalnie/resources/polish_words.txt", "Literalnie/resources/solutions.txt");
+        this.dictionary = new WordDictionary("Literalnie/resources/slowa5.txt", "Literalnie/resources/solutions.txt");
         this.gameLogic = new GameLogic();
         this.userInterface = new UserInterface(this);
     }
