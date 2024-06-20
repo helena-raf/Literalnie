@@ -14,6 +14,8 @@ public class Frame extends JFrame {
     private JButton playAgainButton;
     private JLabel title;
     private Font font;
+    private JButton infoButton;
+    private JLabel infoLabel;
     
 
     public Frame(UserInterface ui) {
@@ -22,25 +24,30 @@ public class Frame extends JFrame {
         this.winMessage = new JLabel();
         this.lossMessage = new JLabel();
         this.main = new JLayeredPane();
-        this.nextLayerNumber = 7;
+        this.nextLayerNumber = 8;
         this.tooShort = new JLabel();
         this.doesntExist = new JLabel();
         this.title = new JLabel();
         this.font = new Font("Arial", Font.PLAIN, 15);
+        this.infoLabel = new JLabel();
 
         setUpTitle();
         setUpLossMessage();
         setUpWinMessage();
         setUpTooShort();
         setUpDoesntExist();
+        setUpInfoLabel();
 
         //guessGrid.setBounds(0, 0, 400, 300);
-        main.add(title, 6);
-        main.add(guessGrid, 5);
-        main.add(winMessage, 4);
-        main.add(lossMessage, 3);
-        main.add(tooShort, 2);
-        main.add(doesntExist, 1);
+        
+        main.add(title, 7);
+        main.add(guessGrid, 6);
+        main.add(winMessage, 5);
+        main.add(lossMessage, 4);
+        main.add(tooShort, 3);
+        main.add(doesntExist, 2);
+        main.add(infoLabel,1);
+        cover();
 
         //main.setBounds(0, 0, 400, 300);
         add(main, BorderLayout.CENTER);
@@ -113,6 +120,17 @@ public class Frame extends JFrame {
         doesntExist.setVerticalAlignment(SwingConstants.CENTER);
     }
 
+    public void setUpInfoLabel() {
+        infoLabel.setBounds(0, 200, 450, 80);
+        infoLabel.setText("info");
+        infoLabel.setBackground(Color.WHITE);
+        infoLabel.setOpaque(true);
+        infoLabel.setFont(font);
+        infoLabel.setForeground(Color.BLACK);
+        infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        infoLabel.setVerticalAlignment(SwingConstants.CENTER);
+    }
+
     public void setUpTitle() {
         title.setBounds(0, 0, 450, 80);
         title.setText("tytul");
@@ -123,6 +141,7 @@ public class Frame extends JFrame {
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setVerticalAlignment(SwingConstants.CENTER);
     }
+
 
     public void showWinMessage() {
         main.setLayer(winMessage, nextLayerNumber);
