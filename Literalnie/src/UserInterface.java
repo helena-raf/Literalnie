@@ -50,7 +50,7 @@ public class UserInterface {
         frame.blockKeyboard();
         frame.blockInfoButton();
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -62,7 +62,7 @@ public class UserInterface {
         frame.blockKeyboard();
         frame.blockInfoButton();
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
