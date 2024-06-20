@@ -149,10 +149,10 @@ public class Frame extends JFrame {
     public void setUpInfoPanel() {
         infoPanel.setBounds(50, 50, 350, 500);
         infoPanel.setLayout(new GridLayout(7, 1, 3, 3));
-        JLabel text1 = new JLabel("info1");
-        JLabel text2 = new JLabel("info2");
-        JLabel text3 = new JLabel("info1");
-        JLabel text4 = new JLabel("info2");
+        JLabel text1 = new JLabel("<html>Wpisz dowolne 5-literowe słowo i naciśnij enter, by spróbować odgadnąć hasło.<br>Po każdej próbie, litery zostaną odpowiednio zaznaczone:</html>");
+        JLabel text2 = new JLabel("<html>Jeśli litera podświetlona jest na zielono, występuje ona w haśle w tym samym miejscu</html>");
+        JLabel text3 = new JLabel("<html>Jeśli litera podświetlona jest na żółto, występuje ona w haśle, lecz w innym miejscu</html>");
+        JLabel text4 = new JLabel("<html>Jeśli litera nie jest podświetlona, nie występuje w haśle<br>Masz 6 prób, aby odgadnąć hasło. Powodzenia!</html>");
 
         infoPanel.add(text1);
         infoPanel.add(text2);
@@ -165,10 +165,10 @@ public class Frame extends JFrame {
 
     public void setUpTitle() {
         title.setBounds(0, 0, 450, 80);
-        title.setText("Literalnie");
+        title.setText("LITERALNIE");
+        title.setFont(new Font("Arial", Font.BOLD, 30));
         title.setBackground(Color.WHITE);
         title.setOpaque(true);
-        title.setFont(font);
         title.setForeground(Color.BLACK);
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setVerticalAlignment(SwingConstants.CENTER);
