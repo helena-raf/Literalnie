@@ -1,6 +1,4 @@
 # Literalnie
-
-## Opis
 Prosta gra słowna zaprogramowana w Javie, wzorowana na grze dostępnej pod adresem: 
 
 https://literalnie.fun/.
@@ -21,6 +19,9 @@ do uzupelnienia
 java -jar MojaAplikacja.jar
 
 java --enable-preview -jar projekt.jar
+
+## Dokumentacja
+[Dokumentacja](documentation.md)
 
 ## Autorzy 
 Helena Rafałowicz
