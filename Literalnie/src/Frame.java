@@ -1,7 +1,6 @@
 import java.awt.event.*;
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
 
 public class Frame extends JFrame {
     public GuessGrid guessGrid;
@@ -13,7 +12,9 @@ public class Frame extends JFrame {
     private JLabel tooShort;
     private JLabel doesntExist;
     private JButton playAgainButton;
+    private JLabel title;
     private Font font;
+    
 
     public Frame(UserInterface ui) {
         this.ui = ui;
@@ -21,17 +22,20 @@ public class Frame extends JFrame {
         this.winMessage = new JLabel();
         this.lossMessage = new JLabel();
         this.main = new JLayeredPane();
-        this.nextLayerNumber = 6;
+        this.nextLayerNumber = 7;
         this.tooShort = new JLabel();
         this.doesntExist = new JLabel();
+        this.title = new JLabel();
         this.font = new Font("Arial", Font.PLAIN, 15);
 
+        setUpTitle();
         setUpLossMessage();
         setUpWinMessage();
         setUpTooShort();
         setUpDoesntExist();
 
         //guessGrid.setBounds(0, 0, 400, 300);
+        main.add(title, 6);
         main.add(guessGrid, 5);
         main.add(winMessage, 4);
         main.add(lossMessage, 3);
@@ -109,6 +113,17 @@ public class Frame extends JFrame {
         doesntExist.setVerticalAlignment(SwingConstants.CENTER);
     }
 
+    public void setUpTitle() {
+        title.setBounds(0, 0, 450, 80);
+        title.setText("tytul");
+        title.setBackground(Color.WHITE);
+        title.setOpaque(true);
+        title.setFont(font);
+        title.setForeground(Color.BLACK);
+        title.setHorizontalAlignment(SwingConstants.CENTER);
+        title.setVerticalAlignment(SwingConstants.CENTER);
+    }
+
     public void showWinMessage() {
         main.setLayer(winMessage, nextLayerNumber);
         this.nextLayerNumber++;
@@ -129,8 +144,7 @@ public class Frame extends JFrame {
     public void playAgainClicked() {
         main.remove(playAgainButton);
         GuessGrid newGuessGrid = new GuessGrid();
-    
-        newGuessGrid.setBounds(0, 0, 300, 400);
+
         main.add(newGuessGrid);
         main.setLayer(newGuessGrid, nextLayerNumber);
         this.nextLayerNumber++;
