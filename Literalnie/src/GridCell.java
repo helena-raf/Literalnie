@@ -23,7 +23,7 @@ public class GridCell extends JLabel {
         this.setText(string.toUpperCase());
         this.setHorizontalAlignment(SwingConstants.CENTER); 
         this.setVerticalAlignment(SwingConstants.CENTER);  
-        this.setFont(new Font("Arial", Font.BOLD, 30));
+        this.setFont(new Font("Arial", Font.BOLD, 27));
     }
 
     public void deleteLetter() {

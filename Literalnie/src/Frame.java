@@ -148,13 +148,36 @@ public class Frame extends JFrame {
 
     public void setUpInfoPanel() {
         infoPanel.setBounds(50, 50, 350, 500);
-        infoPanel.setLayout(new GridLayout(7, 1, 3, 3));
+        infoPanel.setLayout(new GridLayout(7, 1, 10, 10));
+        
         JLabel text1 = new JLabel("<html>Wpisz dowolne 5-literowe słowo i naciśnij enter, by spróbować odgadnąć hasło.<br>Po każdej próbie, litery zostaną odpowiednio zaznaczone:</html>");
         JLabel text2 = new JLabel("<html>Jeśli litera podświetlona jest na zielono, występuje ona w haśle w tym samym miejscu</html>");
         JLabel text3 = new JLabel("<html>Jeśli litera podświetlona jest na żółto, występuje ona w haśle, lecz w innym miejscu</html>");
         JLabel text4 = new JLabel("<html>Jeśli litera nie jest podświetlona, nie występuje w haśle<br>Masz 6 prób, aby odgadnąć hasło. Powodzenia!</html>");
 
+        JPanel ex = new JPanel();
+        ex.setLayout(new GridLayout(1, 5, 3, 3));
+        ex.setBackground(Color.WHITE);
+        GridCell l1 = new GridCell();
+        GridCell l2 = new GridCell();
+        GridCell l3 = new GridCell();
+        GridCell l4 = new GridCell();
+        GridCell l5 = new GridCell();
+
+        l1.setLetter('r');
+        l2.setLetter('z');
+        l3.setLetter('e');
+        l4.setLetter('k');
+        l5.setLetter('a');
+
+        ex.add(l1);
+        ex.add(l2);
+        ex.add(l3);
+        ex.add(l4);
+        ex.add(l5);
+        
         infoPanel.add(text1);
+        infoPanel.add(ex);
         infoPanel.add(text2);
         infoPanel.add(text3);
         infoPanel.add(text4);
