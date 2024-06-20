@@ -17,6 +17,7 @@ public class Frame extends JFrame {
     private JButton infoButton;
     private JButton closeInfo;
     private JLabel infoLabel;
+    private KeyAdapter keyAdapter;
 
     public Frame(UserInterface ui) {
         this.ui = ui;
@@ -58,12 +59,12 @@ public class Frame extends JFrame {
         this.setSize(450, 600);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-        guessGrid.addKeyListener(new KeyAdapter() {
+        this.keyAdapter = new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
                 handleKeyPressed(e);
-            }
-        });
+            }};
+        guessGrid.addKeyListener(keyAdapter);
         this.setFocusable(true);
         this.requestFocusInWindow();
         this.setResizable(false);
@@ -182,12 +183,7 @@ public class Frame extends JFrame {
     public void playAgainClicked() {
         main.remove(playAgainButton);
         GuessGrid newGuessGrid = new GuessGrid();
-        newGuessGrid.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                handleKeyPressed(e);
-            }
-        });
+        newGuessGrid.addKeyListener(keyAdapter);
         main.add(newGuessGrid);
         
         this.guessGrid = newGuessGrid;
