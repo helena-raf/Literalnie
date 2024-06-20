@@ -233,7 +233,7 @@ public class Frame extends JFrame {
         main.setLayer(infoButton, nextLayerNumber);
         nextLayerNumber++;
         guessGrid.requestFocusInWindow();
-        
+        infoButton.setEnabled(true);
         
         main.revalidate();
         main.repaint();
@@ -247,5 +247,11 @@ public class Frame extends JFrame {
     public void unblockKeyboard() {
         guessGrid.addKeyListener(keyAdapter);
     }
+
+    public void blockInfoButton() {
+        infoButton.setEnabled(false);
+    }
+
+    
 
 }

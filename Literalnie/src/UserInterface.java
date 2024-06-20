@@ -48,6 +48,7 @@ public class UserInterface {
     }
     public void handleWin() {
         frame.blockKeyboard();
+        frame.blockInfoButton();
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -59,6 +60,7 @@ public class UserInterface {
 
     public void handleLoss(String correctWord) {
         frame.blockKeyboard();
+        frame.blockInfoButton();
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
