@@ -12,6 +12,7 @@ public class Frame extends JFrame {
     private JLabel tooShort;
     private JLabel doesntExist;
     private JButton playAgainButton;
+    private Font font;
 
     public Frame(UserInterface ui) {
         this.ui = ui;
@@ -22,25 +23,25 @@ public class Frame extends JFrame {
         this.nextLayerNumber = 6;
         this.tooShort = new JLabel();
         this.doesntExist = new JLabel();
+        this.font = new Font("Arial", Font.PLAIN, 15);
 
         setUpLossMessage();
         setUpWinMessage();
         setUpTooShort();
         setUpDoesntExist();
 
-        guessGrid.setBounds(0, 0, 300, 400);
+        //guessGrid.setBounds(0, 0, 400, 300);
         main.add(guessGrid, 5);
         main.add(winMessage, 4);
         main.add(lossMessage, 3);
         main.add(tooShort, 2);
         main.add(doesntExist, 1);
 
-        main.setBounds(0, 0, 400, 300);
+        //main.setBounds(0, 0, 400, 300);
         add(main, BorderLayout.CENTER);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setPreferredSize(new Dimension(300, 400));
-        pack();
+        this.setSize(450, 600);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.addKeyListener(new KeyAdapter() {
@@ -86,13 +87,19 @@ public class Frame extends JFrame {
     }
 
     public void setUpTooShort() {
-        tooShort.setBounds(100, 100, 50, 50);
-        tooShort.setText("za krotkie");
+        tooShort.setBounds(100, 100, 200, 50);
+        tooShort.setText("Słowo musi zawierać 5 liter!");
     }
 
     public void setUpDoesntExist() {
-        doesntExist.setBounds(100, 100, 50, 50);
-        doesntExist.setText("nie istnieje");
+        doesntExist.setBackground(Color.BLACK);
+        doesntExist.setOpaque(true);
+        doesntExist.setBounds(100, 100, 200, 50);
+        doesntExist.setText("Brak podanego słowa w bazie!");
+        doesntExist.setFont(font);
+        doesntExist.setForeground(Color.WHITE);
+        doesntExist.setHorizontalAlignment(SwingConstants.CENTER);
+        doesntExist.setVerticalAlignment(SwingConstants.CENTER);
     }
 
     public void showWinMessage() {
