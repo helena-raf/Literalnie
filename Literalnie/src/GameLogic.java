@@ -56,19 +56,26 @@ public class GameLogic {
 
         for (int i = 0; i < 5; i++) {
             char correctLetter = correctWord.getCharFromPos(i);
-            char guessLetter = currentGuess.getCharFromPos(i);
+           
 
             if (currentGuess.isLetterAtPosition(correctLetter, i)) {
                 currentGuess.colorLetterAtPos(i, MyColor.GREEN);
                 correctLetters.remove((Character) correctLetter);
             }
 
-            else if (correctLetters.contains(guessLetter)) {
-                currentGuess.colorLetterAtPos(i, MyColor.YELLOW);
-                correctLetters.remove((Character) guessLetter);
-            }
+            
         }
+        for (int i = 0; i < 5; i++) {
+           
+            char guessLetter = currentGuess.getCharFromPos(i);
+        if (correctLetters.contains(guessLetter)) {
+            currentGuess.colorLetterAtPos(i, MyColor.YELLOW);
+            correctLetters.remove((Character) guessLetter);
+        }}
     }
+
+
+
 
 
     public boolean isAttemptsLimitReached() {
